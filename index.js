@@ -1,20 +1,13 @@
-import { app } from "#src/app.js"
+import {app} from "#src/app.js"
+import {SystemInfo, SystemInfoPath} from "#utils/systemInfo.js";
+import {AdminApi, AdminApiPath} from "#src/adminAPI/router.js";
 
-const ALLOWED_ORIGINS = process.env.ALLOWED_ORIGINS;
-const PORT = process.env.PORT || 3000;
-
-app.get("/", (req, res) => {
+app.get(SystemInfoPath, SystemInfo);
+app.use(AdminApiPath, AdminApi());
+app.get('/', (req, res) => {
 	res.send(`Hello World!`);
 });
 
-app.get("/nodeinfo", (req, res) => {
-	const d = {
-		origins: ALLOWED_ORIGINS,
-		post: PORT,
-	}
-	res.json(d);
-});
-
 app.listen(process.env.PORT || 3000, () => {
-	console.warn(`App listening on http://localhost:${PORT}`);
+	console.warn(`App listening on http://localhost:${process.env.PORT || 3000}`);
 });
