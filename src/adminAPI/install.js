@@ -5,6 +5,14 @@ import {passwordCrypt} from "#utils/bcrypt.js";
 const passwordHashed = await passwordCrypt('admin');
 
 const table = {
+	patch: async () => {
+		await knex.schema
+			.dropTableIfExists('ap-panel-setting')
+			.createTable('ap-panel-setting', (table) => {
+				table.string('name')
+				table.text('value')
+			})
+	},
 	create: {
 		admin: async () => {
 			await knex.schema
@@ -25,6 +33,12 @@ const table = {
 					table.timestamps();
 					table.datetime('expiryAt');
 					table.boolean('isValid');
+				})
+			await knex.schema
+				.dropTableIfExists('ap-panel-setting')
+				.createTable('ap-panel-setting', (table) => {
+					table.string('name')
+					table.text('value')
 				})
 		}
 	},
@@ -47,8 +61,9 @@ export const Install = container(async (req, res) => {
 		return;
 	}
 	try {
-		await table.create.admin()
-		await table.insert.admin()
+		await table.patch()
+		// await table.create.admin()
+		// await table.insert.admin()
 		res.status(200).json({
 			message: `database install success.`
 		});

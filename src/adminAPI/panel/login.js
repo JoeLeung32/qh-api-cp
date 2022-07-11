@@ -8,7 +8,7 @@ export const PanelLogin = container(async (req, res) => {
     let rejectReason = {
         noBody: {
             status: 400,
-            message: "Access Denied",
+            message: "Bad Request",
         },
         noAccount: {
             status: 401,
