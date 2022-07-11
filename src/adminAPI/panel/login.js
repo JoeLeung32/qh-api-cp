@@ -21,7 +21,9 @@ export const PanelLogin = container(async (req, res) => {
     };
     if (!req || !req.body) {
         res.status(rejectReason.noBody.status)
-            .send(rejectReason.noBody.message);
+            .json({
+                message: rejectReason.noBody.message
+            });
         return;
     }
 
@@ -43,7 +45,9 @@ export const PanelLogin = container(async (req, res) => {
         .limit(1)
     if (!accounts || accounts.length !== 1) {
         res.status(rejectReason.noAccount.status)
-            .send(rejectReason.noAccount.message);
+            .json({
+                message: rejectReason.noAccount.message
+            });
         return;
     }
     account = accounts[0];
@@ -56,7 +60,9 @@ export const PanelLogin = container(async (req, res) => {
     );
     if (!isValidLogin) {
         res.status(rejectReason.invalidLogin.status)
-            .send(rejectReason.invalidLogin.message);
+            .json({
+                message: rejectReason.invalidLogin.message
+            });
         return;
     }
     await knex('ap-admin-token')

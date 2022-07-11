@@ -12,7 +12,9 @@ export const PanelGuard = container(async (req, res) => {
 
   if (!authToken) {
     res.status(rejectReason.invalidToken.status)
-        .send(rejectReason.invalidToken.message);
+        .json({
+            message: rejectReason.invalidToken.message
+        });
     return;
   }
 
@@ -25,7 +27,9 @@ export const PanelGuard = container(async (req, res) => {
       })
   if (!tokens || tokens.length !== 1) {
     res.status(rejectReason.invalidToken.status)
-        .send(rejectReason.invalidToken.message);
+        .json({
+            message: rejectReason.invalidToken.message
+        });
     return;
   }
 
