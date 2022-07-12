@@ -1,38 +1,15 @@
 import {nanoid} from "nanoid";
-
 import {container} from "#utils/util.js";
+import {StatusCodes} from "#utils/error/errorMessage.js";
 import {knex} from "#utils/database/index.js";
 import {passwordCompare} from "#utils/bcrypt.js";
 
 export const PanelLogin = container(async (req, res) => {
-    let rejectReason = {
-        noBody: {
-            status: 400,
-            message: "Bad Request",
-        },
-        noAccount: {
-            status: 401,
-            message: "Incorrect account",
-        },
-        invalidLogin: {
-            status: 401,
-            message: "Incorrect username or password",
-        }
-    };
-    if (!req || !req.body) {
-        res.status(rejectReason.noBody.status)
-            .json({
-                message: rejectReason.noBody.message
-            });
-        return;
-    }
-
     // Get Params from Body
     const username = req.body?.username;
     const password = req.body?.password;
     if (!username || !password) {
-        res.sendStatus(400);
-        return;
+        throw StatusCodes.C400
     }
 
     // Account Validation
@@ -44,11 +21,7 @@ export const PanelLogin = container(async (req, res) => {
         })
         .limit(1)
     if (!accounts || accounts.length !== 1) {
-        res.status(rejectReason.noAccount.status)
-            .json({
-                message: rejectReason.noAccount.message
-            });
-        return;
+        throw StatusCodes.C401
     }
     account = accounts[0];
 
@@ -59,11 +32,7 @@ export const PanelLogin = container(async (req, res) => {
         account.password
     );
     if (!isValidLogin) {
-        res.status(rejectReason.invalidLogin.status)
-            .json({
-                message: rejectReason.invalidLogin.message
-            });
-        return;
+        throw StatusCodes.C403
     }
     await knex('ap-admin-token')
         .where({
@@ -75,10 +44,9 @@ export const PanelLogin = container(async (req, res) => {
 
     // Assign New Token
     const authToken = nanoid(256);
-    const source  = new Date();
-    const now = source.toISOString();
+    const now = new Date().toISOString();
     let expiry = new Date();
-    expiry.setTime(source.getTime() + 60 * 60 * 1000);
+    expiry.setTime(expiry.getTime() + parseInt(process.env.SESSION_TOKEN_LIFE));
     expiry = expiry.toISOString();
 
     await knex('ap-admin-token')

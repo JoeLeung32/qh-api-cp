@@ -1,6 +1,7 @@
 import {container} from "#utils/util.js";
 import {knex} from "#utils/database/index.js";
 import {passwordCrypt} from "#utils/bcrypt.js";
+import {StatusCodes} from "#utils/error/errorMessage.js";
 
 const passwordHashed = await passwordCrypt('admin');
 
@@ -57,8 +58,7 @@ const table = {
 
 export const Install = container(async (req, res) => {
 	if (!knex) {
-		res.sendStatus(400);
-		return;
+		throw StatusCodes.C400
 	}
 	try {
 		await table.patch()
@@ -68,6 +68,6 @@ export const Install = container(async (req, res) => {
 			message: `database install success.`
 		});
 	} catch (e) {
-		res.status(500).send(`<pre>${e.message}</pre>`);
+		throw new Error(`<pre>${e.message}</pre>`)
 	}
 })

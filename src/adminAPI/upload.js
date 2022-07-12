@@ -1,4 +1,5 @@
 import {container} from "#utils/util.js";
+import {StatusCodes} from "#utils/error/errorMessage.js";
 import {uploader} from "#utils/uploader/index.js";
 
 /*
@@ -14,34 +15,16 @@ import {uploader} from "#utils/uploader/index.js";
 * }
 * */
 
-const coreFlow = async (dataField, req, res, next) => {
-	let rejectReason = {
-		noFile: {
-			status: 400,
-			message: "Bad Request",
-		},
-		uploadError: {
-			status: 400,
-			message: "",
-		},
-	}
-
+const coreFlow = async (dataField, req, res) => {
 	if (!dataField) {
-		res.status(rejectReason.noFile.status)
-			.json({
-				message: rejectReason.noFile.message
-			});
-		return
+		throw StatusCodes.C400
 	}
 
 	try {
 		const result = await uploader.upload(dataField)
 		res.send(result)
 	} catch (e) {
-		res.status(rejectReason.uploadError.status)
-			.json({
-				message: e.message
-			});
+		throw new Error(e.message)
 	}
 }
 

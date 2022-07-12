@@ -1,7 +1,8 @@
-import {container} from "#utils/util.js";
+import {authedContainer} from "#utils/util.js";
 import {knex} from "#utils/database/index.js";
+import {StatusCodes} from "#utils/error/errorMessage.js";
 
-export const PanelSetting = container(async (req, res) => {
+export const PanelSetting = authedContainer(async (req, res) => {
 	const structure = {
 		siteName: '',
 		siteLogo: '',
@@ -36,5 +37,5 @@ export const PanelSetting = container(async (req, res) => {
 		return;
 	}
 
-	res.sendStatus(400);
+	throw StatusCodes.C400
 })

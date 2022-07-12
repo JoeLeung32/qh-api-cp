@@ -17,7 +17,7 @@ export const AdminApi = () => {
 	router.post("/panel/login", upload.none(), PanelLogin);
 	router.get("/panel/logout", PanelLogout);
 	router.get("/panel/guard", PanelGuard);
-	router.post("/panel/setting", upload.none, PanelSetting);
+	router.post("/panel/setting", upload.none(), PanelSetting);
 
 	// Uploader Example
 	router.post("/upload", upload.single('single'), Uploader.single);
