@@ -11,8 +11,7 @@ const router = express.Router();
 const upload = multer({
 	dest: 'uploads/'
 });
-export const AdminApiPath = '/api/admin';
-export const AdminApi = () => {
+const AdminApi = () => {
 	// Panel
 	router.post("/panel/login", upload.none(), PanelLogin);
 	router.get("/panel/logout", PanelLogout);
@@ -35,3 +34,5 @@ export const AdminApi = () => {
 	});
 	return router;
 }
+export const AdminApiPath = '/api/admin';
+export const AdminApiRouter = AdminApi();
