@@ -5,7 +5,7 @@ import helmet from "helmet";
 
 // Defining the Express app
 export const app = express()
-export const corsConfig = {
+export const appGenericCORS = cors({
 	origin: (origin, callback) => {
 		const allowedOrigins = process.env.ALLOWED_ORIGINS.split(',')
 		const errMsgOfAllowedOrigins = 'The CORS policy for this site ' +
@@ -17,10 +17,7 @@ export const corsConfig = {
 		return callback(null, true)
 	},
 	credentials: true,
-}
-
-// CORS
-app.use(cors(corsConfig))
+})
 
 // Enhance API security
 app.use(helmet());

@@ -1,5 +1,6 @@
 import express from "express";
 import multer from "multer";
+import {appGenericCORS} from "#src/app.js";
 import {Install} from "#admin/install.js";
 import {Uploader} from "#admin/upload.js";
 import {PanelLogin} from "#admin/panel/login.js";
@@ -12,6 +13,14 @@ const upload = multer({
 	dest: 'uploads/'
 });
 const AdminApi = () => {
+	// CORS
+	router.use(appGenericCORS)
+
+	// Pre-load
+	router.all('*', (req, res, next) => {
+		next()
+	})
+
 	// Panel
 	router.post("/panel/login", upload.none(), PanelLogin);
 	router.get("/panel/logout", PanelLogout);
@@ -29,7 +38,8 @@ const AdminApi = () => {
 	// Install
 	router.get('/install', Install);
 
-	router.get('/', (req, res) => {
+	// Generic
+	router.all('*', (req, res) => {
 		res.sendStatus(403);
 	});
 	return router;
