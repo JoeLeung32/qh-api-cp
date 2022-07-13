@@ -32,7 +32,7 @@ export const authedContainer = (callback) => (
 			const now = dateFormat(new Date().toISOString(), 'yyyy-mm-dd HH:MM:ss', true)
 			const sql = knex('ap-admin-token')
 				.select('token')
-				.where('created_at', '<=', now)
+				// .where('created_at', '<=', now)
 				.where('expiryAt', '>=', now)
 				.where({
 					token: authToken,
