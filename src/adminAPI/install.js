@@ -61,9 +61,9 @@ export const Install = container(async (req, res) => {
 		throw StatusCodes.C400
 	}
 	try {
-		await table.patch()
-		// await table.create.admin()
-		// await table.insert.admin()
+		// await table.patch()
+		await table.create.admin()
+		await table.insert.admin()
 		res.status(200).json({
 			message: `database install success.`
 		});
