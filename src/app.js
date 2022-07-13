@@ -1,5 +1,4 @@
 import express from 'express'
-import bodyParser from "body-parser";
 import cors from 'cors'
 import helmet from "helmet";
 
@@ -18,14 +17,4 @@ export const appGenericCORS = cors({
 	},
 	credentials: true,
 })
-
-// Enhance API security
-app.use(helmet());
-
-// Parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({
-	extended: false
-}))
-
-// Parse application/json
-app.use(bodyParser.json())
+export const helmetBasic = helmet()

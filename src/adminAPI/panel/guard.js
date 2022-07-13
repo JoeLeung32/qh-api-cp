@@ -18,5 +18,7 @@ export const PanelGuard = authedContainer(async (req, res, error, authToken) => 
 			expiryAt: expiry
 		})
 
-	res.sendStatus(200)
+	res.status(200).json({
+		expiry: expiry
+	})
 })

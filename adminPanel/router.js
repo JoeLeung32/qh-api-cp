@@ -1,22 +1,29 @@
 import express from "express";
-import path from "path";
-import {appGenericCORS} from "#src/app.js";
+import cookieParser from 'cookie-parser';
+import {app} from "#src/app.js";
+import {IndexComponent} from "#cp/pages/index.js";
+import {LoginComponent} from "#cp/pages/login.js";
+import {DashboardComponent} from "#cp/pages/dashboard.js";
 
-const __dirname = process.cwd();
 const router = express.Router();
 
 const AdminPanel = () => {
-	// CORS
-	// router.use(appGenericCORS)
+	// For Admin Panel
+	app.use('/static', express.static('./adminPanel/static'));
+	app.set('views', './adminPanel/views')
+	app.set('view engine', 'ejs')
+
+	router.use(cookieParser('qh'))
 
 	// Pre-load
 	router.all('*', (req, res, next) => {
 		next()
 	})
 
-	router.all('/', (req, res) => {
-		res.sendFile(path.join(__dirname, '/adminPanel/index.html'))
-	});
+	// Pages
+	router.get('/', IndexComponent);
+	router.get('/login', LoginComponent);
+	router.get('/dashboard', DashboardComponent);
 
 	// Generic
 	router.all('*', (req, res) => {
@@ -24,5 +31,5 @@ const AdminPanel = () => {
 	});
 	return router;
 }
-export const AdminPanelPath = '/cp';
+export const AdminPanelPath = '/';
 export const AdminPanelRouter = AdminPanel();
