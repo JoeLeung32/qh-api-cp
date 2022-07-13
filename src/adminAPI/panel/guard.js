@@ -1,4 +1,4 @@
-import {authedContainer} from "#utils/util.js";
+import {authedContainer} from "#utils/container.js";
 import {knex} from "#utils/database/index.js";
 
 export const PanelGuard = authedContainer(async (req, res, error, authToken) => {

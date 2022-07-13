@@ -1,4 +1,4 @@
-import {container} from "#utils/util.js";
+import {container} from "#utils/container.js";
 import {knex} from "#utils/database/index.js";
 import {passwordCrypt} from "#utils/bcrypt.js";
 import {StatusCodes} from "#utils/error/errorMessage.js";

@@ -1,5 +1,5 @@
 import {nanoid} from "nanoid";
-import {container} from "#utils/util.js";
+import {container} from "#utils/container.js";
 import {StatusCodes} from "#utils/error/errorMessage.js";
 import {knex} from "#utils/database/index.js";
 import {passwordCompare} from "#utils/bcrypt.js";
