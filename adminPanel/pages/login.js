@@ -8,7 +8,7 @@ const POST = (req, res) => {
 		throw new Error('No info')
 	}
 
-	axios.post(process.env.CP_CALL_API_PATH + 'api/admin/panel/login', {
+	axios.post(process.env.CP_API_ENDPOINT + 'api/admin/panel/login', {
 		username,
 		password,
 	})

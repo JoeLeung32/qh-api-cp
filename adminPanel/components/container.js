@@ -31,7 +31,7 @@ export const CPAuthContainer = (callback) => (
 			}
 
 			// Valid Token (Recorded in database)
-			axios.get(process.env.CP_CALL_API_PATH + 'api/admin/panel/guard', {
+			axios.get(process.env.CP_API_ENDPOINT + 'api/admin/panel/guard', {
 				headers: {
 					'Authorization': 'Bearer ' + authToken
 				}
