@@ -1,15 +1,20 @@
-import {CPContainer} from "#cp/shared/components/container.js";
 import axios from "axios";
+import {CPContainer} from "#cp/shared/container.js";
+import {Hepler} from "#cp/shared/helper.js";
 
-export class Login {
+export class Login extends Hepler {
 	constructor(req, res, error) {
+		super(req, res, error);
 		switch (req.method) {
 			case 'POST': {
-				this.postMethod(req, res, error);
+				this.postMethod(req, res, error)
 				break
 			}
 			default: {
-				res.render('login')
+				this.pageRender('html', {
+					title: 'Login',
+					page: 'login',
+				})
 				break;
 			}
 		}

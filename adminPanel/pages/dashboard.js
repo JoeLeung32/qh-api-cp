@@ -1,5 +1,14 @@
-import {CPAuthContainer} from "#cp/shared/components/container.js";
+import {CPAuthContainer} from "#cp/shared/container.js";
+import {Hepler} from "#cp/shared/helper.js";
 
-export const DashboardComponent = CPAuthContainer(async (req, res, next) => {
-	res.send('dashboard')
-})
+export class Dashboard extends Hepler {
+	constructor(req, res, error) {
+		super(req, res, error);
+		this.pageRender('html', {
+			title: 'Dashboard',
+			page: 'dashboard',
+		})
+	}
+}
+
+export const DashboardComponent = CPAuthContainer(async (req, res, next) => new Dashboard(req, res, next))

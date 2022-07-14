@@ -5,6 +5,7 @@ export const CPContainer = (callback) => (
 		try {
 			// GET Token
 			const authToken = req.signedCookies.token
+			req.session.authToken = authToken
 
 			// Token exist in cookie?
 			if (authToken) {
@@ -23,6 +24,7 @@ export const CPAuthContainer = (callback) => (
 		try {
 			// GET Token
 			const authToken = req.signedCookies.token
+			req.session.authToken = authToken
 
 			// Token exist in cookie?
 			if (!authToken) {
