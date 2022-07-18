@@ -3,7 +3,6 @@ import {CPContainer} from "#cp/shared/container.js";
 import {Hepler} from "#cp/shared/helper.js";
 
 export class Login extends Hepler {
-	test = ''
 
 	constructor(req, res, error) {
 		super(req, res, error);
@@ -14,7 +13,7 @@ export class Login extends Hepler {
 			}
 			default: {
 				this.pageRender('html', {
-					title: 'Login',
+					title: req.t('login:login'),
 					page: 'login',
 				})
 				break;
@@ -23,6 +22,7 @@ export class Login extends Hepler {
 	}
 
 	postMethod(req, res, error) {
+		const {lng} = req.params
 		const username = req.body?.username
 		const password = req.body?.password
 		if (!username.length || !password.length) {
@@ -46,7 +46,7 @@ export class Login extends Hepler {
 						secure: true,
 						signed: true,
 					})
-					.redirect('/')
+					.redirect(`/${lng}`)
 			})
 	}
 }

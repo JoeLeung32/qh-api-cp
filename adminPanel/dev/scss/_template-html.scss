@@ -1,0 +1,163 @@
+@import "bootstrap";
+
+@mixin layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+
+  & > {
+    .body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      position: relative;
+
+      @include media-breakpoint-up(sm) {
+        flex-direction: row;
+      }
+
+      & > {
+        .nav {
+          order: 1;
+          overflow-y: auto;
+          -webkit-user-select: none;
+          user-select: none;
+
+          @include media-breakpoint-up(sm) {
+            flex: 0 0 150px;
+          }
+        }
+
+        .aside {
+          //flex: 0 0 150px;
+          display: none;
+          order: 3;
+          overflow-y: auto;
+          -webkit-user-select: none;
+          user-select: none;
+
+          width: 300px;
+          position: absolute;
+          right: 0;
+        }
+
+        .main {
+          display: flex;
+          flex: 1;
+          flex-direction: column;
+          order: 2;
+        }
+      }
+    }
+  }
+}
+
+@mixin header {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+
+  & > div {
+    display: flex;
+    align-items: center;
+
+    > .header--item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 16px;
+      min-height: 16px;
+    }
+  }
+
+  &--logo {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  &--navIcon, &--toolbar {
+    > div {
+      justify-content: center;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    padding-left: 0;
+    padding-right: 0;
+
+    &--navIcon {
+      display: none !important;
+    }
+
+    &--logo {
+      padding-left: 8px;
+    }
+
+    &--toolbar {
+      padding-left: 12px;
+      padding-right: 12px;
+
+      > .header--item {
+        display: flex;
+        flex: 1;
+      }
+    }
+  }
+}
+
+@mixin headerEffect {
+  .dropdown {
+    position: relative;
+    user-select: none;
+
+    > input[type="checkbox"] {
+      display: none;
+      @include media-breakpoint-down(md) {
+        &:checked + .dropdown--menu {
+          display: block;
+        }
+      }
+    }
+
+    @include media-breakpoint-up(md) {
+      &:hover > .dropdown--menu {
+        display: block;
+      }
+    }
+
+    &--menu {
+      background-color: #fff;
+      box-shadow: 0 0 10px 1px rgba(0,0,0,.15);
+      display: none;
+      position: absolute;
+      top: 1.5rem;
+      right: 0;
+      z-index: 1;
+
+      ul, ol {
+        list-style: none;
+        margin: 0.5rem 1rem;
+        padding: 0;
+
+        > li {
+          margin-bottom: 0.5rem;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}
+
+.html {
+  @include layout;
+
+  .header {
+    @include header;
+    @include headerEffect
+  }
+}

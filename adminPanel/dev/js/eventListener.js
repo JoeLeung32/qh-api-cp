@@ -1,5 +1,5 @@
 const __evtOL = []
-const __evtRS = []
+const __evtOR = []
 
 const eventListener = {
 	onload: {
@@ -10,8 +10,8 @@ const eventListener = {
 	},
 	resize: {
 		add: (callback, priority = 0) => {
-			__evtRS.push({c: callback, p: priority})
-			__evtRS.sort((a, b) => b.p - a.p)
+			__evtOR.push({c: callback, p: priority})
+			__evtOR.sort((a, b) => b.p - a.p)
 		}
 	}
 }
@@ -26,9 +26,9 @@ window.onload = (evt) => {
 	}
 }
 
-window.resize = (evt) => {
-	if (__evtRS && __evtRS.length) {
-		__evtRS.forEach((e) => {
+window.onresize = (evt) => {
+	if (__evtOR && __evtOR.length) {
+		__evtOR.forEach((e) => {
 			if (typeof e.c === 'function') {
 				e.c(evt)
 			}

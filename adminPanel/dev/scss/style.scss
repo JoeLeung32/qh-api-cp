@@ -1,5 +1,10 @@
 @import "bootstrap";
 
 // Templates
-@import "template-wrapper";
+@import "template-html";
 @import "template-login";
+
+// global
+a {
+  text-decoration: none;
+}

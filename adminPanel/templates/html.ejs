@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><%= title %></title>
+    <title><%= title %> | <%= t('AdminPanel') %></title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/public/css/bootstrap.min.css">
     <link rel="stylesheet" href="/public/css/style.css">
-<!--    <script src="/public/js/eventListener.js"></script>-->
+    <script src="/public/js/rxjs.umd.js"></script>
+    <script src="/public/js/app.js"></script>
 </head>
 <body>
-<div class="wrapper">
+<div class="html">
     <% if (isAuth) { %>
         <div class="header">
             <%- include('./partials/header') %>
@@ -37,7 +38,6 @@
         </div>
     <% } %>
 </div>
-<script src="/public/js/rxjs.umd.js"></script>
-<script src="/public/js/app.js"></script>
+<script src="/public/js/fontawesome/all.min.js"></script>
 </body>
 </html>

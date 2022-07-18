@@ -1,1 +1,83 @@
-header
+<div class="header--navIcon gap-3">
+    <div class="header--item">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+    <div class="header--item">
+    </div>
+    <div class="header--item">
+    </div>
+</div>
+<div class="header--logo gap-3">
+    <div class="header--item">
+        <img src="/public/images/svg/logo.svg">
+    </div>
+</div>
+<div class="header--toolbar gap-3">
+    <div class="header--item">
+        <i class="fa-solid fa-bell"></i>
+    </div>
+    <div class="header--item dropdown">
+        <label for="locateMenu">
+            <i class="fa-solid fa-globe"></i>
+        </label>
+        <input type="checkbox" id="locateMenu" name="headerDropdownMenu" data-type="dropdownMenu">
+        <div class="dropdown--menu">
+            <ul>
+                <li>
+                    <a class="link" href="<%= locateUrl['en'] %>">
+                        <%= t('lngEN') %>
+                    </a>
+                </li>
+                <li>
+                    <a class="link" href="<%= locateUrl['zh-CN'] %>">
+                        <%= t('lngSC') %>
+                    </a>
+                </li>
+                <li>
+                    <a class="link" href="<%= locateUrl['zh-TW'] %>">
+                        <%= t('lngTC') %>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="header--item dropdown">
+        <label for="personalMenu">
+            <a>
+                <i class="fa-solid fa-user"></i>
+            </a>
+        </label>
+        <input type="checkbox" id="personalMenu" name="headerDropdownMenu" data-type="dropdownMenu">
+        <div class="dropdown--menu">
+            <ul>
+                <li>
+                    <a>Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+	const headerDropdownMenuCancelSelected = () => {
+		Array.from(document.querySelectorAll('input[name="headerDropdownMenu"]'))
+			.forEach(obj => {
+				obj.checked = false
+			})
+	}
+	eventListener.onload.add(() => {
+		Array.from(document.querySelectorAll('input[name="headerDropdownMenu"]'))
+            .forEach(obj => {
+				obj.addEventListener('change', evt => {
+                    if (evt.currentTarget.checked) {
+						headerDropdownMenuCancelSelected()
+						evt.currentTarget.checked = true
+                    } else {
+						evt.currentTarget.checked = false
+                    }
+                })
+            })
+	}, 1)
+	eventListener.resize.add(() => {
+		headerDropdownMenuCancelSelected()
+	}, 1)
+</script>

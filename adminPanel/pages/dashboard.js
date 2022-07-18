@@ -5,7 +5,7 @@ export class Dashboard extends Hepler {
 	constructor(req, res, error) {
 		super(req, res, error);
 		this.pageRender('html', {
-			title: 'Dashboard',
+			title: req.t('dashboard:Dashboard'),
 			page: 'dashboard',
 		})
 	}

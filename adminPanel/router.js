@@ -39,7 +39,7 @@ i18next
 			load: 'currentOnly',
 			preload: process.env.LANGUAGE_SUPPORTED.split(','),
 			defaultNs: 'translations',
-			ns: ['translations', 'login']
+			ns: ['translations', 'login', 'dashboard']
 		}
 	)
 
@@ -78,7 +78,8 @@ const AdminPanel = () => {
 
 	// Static files
 	router.use('/public/css', express.static(path.join(__dirname, "node_modules/bootstrap/dist/css")));
-	router.use('/public/js', express.static(path.join(__dirname, "node_modules/rxjs/dist/bundles/")));
+	router.use('/public/js', express.static(path.join(__dirname, "node_modules/rxjs/dist/bundles")));
+	router.use('/public/js/fontawesome', express.static(path.join(__dirname, "node_modules/@fortawesome/fontawesome-free/js")));
 	router.use('/public', express.static('./adminPanel/public'));
 
 	// Pre-load
