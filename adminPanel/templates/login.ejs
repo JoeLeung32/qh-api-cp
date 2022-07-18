@@ -1,6 +1,45 @@
-<form method="post">
-	<input type="text" name="username" value="admin">
-	<input type="text" name="password" value="admin">
-	<button type="submit">Submit</button>
-</form>
-
+<div class="login">
+	<div>
+		<h1>
+			<%= t('AdminPanel') %>
+		</h1>
+		<div>
+			<form method="post">
+				<div class="mb-3 form-floating">
+					<input type="text" class="form-control" id="username" name="username"
+						   placeholder="<%= t('login:username') %>">
+					<label for="username"><%= t('login:username') %></label>
+				</div>
+				<div class="mb-3 form-floating">
+					<input type="text" class="form-control" id="password" name="password"
+						   placeholder="<%= t('login:password') %>">
+					<label for="password"><%= t('login:password') %></label>
+				</div>
+				<div class="mb-3 d-grid">
+					<button type="submit" class="btn btn-primary">
+						<%= t('login:login') %>
+					</button>
+				</div>
+			</form>
+		</div>
+		<div>
+			<ul class="list-unstyled list-inline text-center">
+				<li class="list-inline-item">
+					<a class="link" href="<%= locateUrl['en'] %>">
+						<%= t('lngEN') %>
+					</a>
+				</li>
+				<li class="list-inline-item">
+					<a class="link" href="<%= locateUrl['zh-CN'] %>">
+						<%= t('lngSC') %>
+					</a>
+				</li>
+				<li class="list-inline-item">
+					<a class="link" href="<%= locateUrl['zh-TW'] %>">
+						<%= t('lngTC') %>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

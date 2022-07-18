@@ -1,0 +1,25 @@
+.login {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  > div {
+    @include make-col(10);
+
+    .link {
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    @include media-breakpoint-up(md) {
+      @include make-col(4);
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include make-col(3);
+    }
+  }
+
+}

@@ -3,6 +3,8 @@ import {CPContainer} from "#cp/shared/container.js";
 import {Hepler} from "#cp/shared/helper.js";
 
 export class Login extends Hepler {
+	test = ''
+
 	constructor(req, res, error) {
 		super(req, res, error);
 		switch (req.method) {

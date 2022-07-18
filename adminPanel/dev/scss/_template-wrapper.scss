@@ -1,4 +1,4 @@
-@import "values";
+@import "bootstrap";
 
 @mixin layout {
   display: flex;
@@ -13,7 +13,7 @@
       flex-direction: column;
       position: relative;
 
-      @media (min-width: #{$vp-mobile}) {
+      @include media-breakpoint-up(sm) {
         flex-direction: row;
       }
 
@@ -24,7 +24,7 @@
           -webkit-user-select: none;
           user-select: none;
 
-          @media (min-width: #{$vp-mobile}) {
+          @include media-breakpoint-up(sm) {
             flex: 0 0 80px;
           }
         }

@@ -1,5 +1,6 @@
-import {CPAuthContainer} from "#cp/shared/container.js";
+import {CPAuthContainer, i18nWorker} from "#cp/shared/container.js";
 
 export const IndexComponent = CPAuthContainer(async (req, res, next) => {
-	res.redirect('dashboard')
+	const langCode = i18nWorker(req, res, next)
+	res.redirect(`/${langCode}/dashboard`)
 })
