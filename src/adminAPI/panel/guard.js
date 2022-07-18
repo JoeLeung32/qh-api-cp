@@ -3,10 +3,9 @@ import {knex} from "#utils/database/index.js";
 
 export const PanelGuard = authedContainer(async (req, res, error, authToken) => {
 	// Token Refresh
-	const now = new Date().toISOString();
+	const now = new Date();
 	let expiry = new Date();
 	expiry.setTime(expiry.getTime() + parseInt(process.env.SESSION_TOKEN_LIFE));
-	expiry = expiry.toISOString();
 
 	await knex('ap-admin-token')
 		.where({
@@ -14,7 +13,7 @@ export const PanelGuard = authedContainer(async (req, res, error, authToken) => 
 			isValid: true
 		})
 		.update({
-			updated_at: now,
+			updatedAt: now,
 			expiryAt: expiry
 		})
 

@@ -22,7 +22,11 @@ const table = {
 					table.increments();
 					table.string('username');
 					table.string('password');
-					table.timestamps();
+					table.timestamps({
+						useTimestamps: true,
+						defaultToNow: true,
+						useCamelCase: true,
+					});
 					table.boolean('isValid');
 				})
 			await knex.schema
@@ -31,8 +35,12 @@ const table = {
 					table.increments();
 					table.integer('adminId');
 					table.text('token');
-					table.timestamps();
-					table.datetime('expiryAt');
+					table.timestamps({
+						useTimestamps: true,
+						defaultToNow: true,
+						useCamelCase: true,
+					});
+					table.timestamp('expiryAt').defaultTo(knex.fn.now());
 					table.boolean('isValid');
 				})
 			await knex.schema
@@ -49,7 +57,7 @@ const table = {
 				.insert({
 					username: 'admin',
 					password: passwordHashed,
-					created_at: (new Date()).toISOString(),
+					createdAt: new Date(),
 					isValid: true,
 				})
 		}

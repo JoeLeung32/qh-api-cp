@@ -14,27 +14,27 @@
 <div class="html">
     <% if (isAuth) { %>
         <div class="header">
-            <%- include('./partials/header') %>
+            <%- include('./header') %>
         </div>
     <% } %>
     <div class="body">
         <% if (isAuth) { %>
             <div class="nav">
-                <%- include('./partials/nav') %>
+                <%- include('./nav') %>
             </div>
         <% } %>
         <div class="main">
-            <%- include(page) %>
+            <%- include('../' + page) %>
         </div>
         <% if (isAuth) { %>
             <div class="aside">
-                <%- include('./partials/aside') %>
+                <%- include('./aside') %>
             </div>
         <% } %>
     </div>
     <% if (isAuth) { %>
         <div class="footer">
-            <%- include('./partials/footer') %>
+            <%- include('./footer') %>
         </div>
     <% } %>
 </div>

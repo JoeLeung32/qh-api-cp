@@ -2,11 +2,11 @@ import {CPAuthContainer} from "#cp/shared/container.js";
 import {Hepler} from "#cp/shared/helper.js";
 
 export class Dashboard extends Hepler {
-	constructor(req, res, error) {
-		super(req, res, error);
-		this.pageRender('html', {
+	constructor(req, res, next) {
+		super(req, res, next)
+		this.pageRender('html/html', {
 			title: req.t('dashboard:Dashboard'),
-			page: 'dashboard',
+			page: 'dashboard/dashboard',
 		})
 	}
 }

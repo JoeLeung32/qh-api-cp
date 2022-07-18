@@ -1,5 +1,8 @@
 @import "bootstrap";
 
+$width-nav: 220px;
+$width-aside: 300px;
+
 @mixin layout {
   display: flex;
   flex-direction: column;
@@ -13,7 +16,7 @@
       flex-direction: column;
       position: relative;
 
-      @include media-breakpoint-up(sm) {
+      @include media-breakpoint-up(md) {
         flex-direction: row;
       }
 
@@ -24,20 +27,20 @@
           -webkit-user-select: none;
           user-select: none;
 
-          @include media-breakpoint-up(sm) {
-            flex: 0 0 150px;
+          @include media-breakpoint-up(md) {
+            flex: 0 0 $width-nav;
           }
         }
 
         .aside {
-          //flex: 0 0 150px;
+          //flex: 0 0 $width-aside;
           display: none;
           order: 3;
           overflow-y: auto;
           -webkit-user-select: none;
           user-select: none;
 
-          width: 300px;
+          width: $width-aside;
           position: absolute;
           right: 0;
         }
@@ -153,11 +156,90 @@
   }
 }
 
+@mixin navEffect {
+  .header {
+    &--navIcon {
+      .status {
+        &-open {
+          display: none;
+        }
+        &-close {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .nav {
+    &--main {
+      display: none;
+
+      @include media-breakpoint-up(md) {
+        display: block;
+      }
+
+      &.transition--open {
+        display: block;
+      }
+
+      &.transition--close {
+        display: none;
+        //height: 0;
+
+        @include media-breakpoint-up(md) {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+@mixin nav {
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    & > li {
+      label {
+        display: block;
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+      }
+      & > ul {
+        display: none;
+
+        a {
+          padding: 0.3rem 1rem;
+        }
+      }
+    }
+  }
+
+  .accordion {
+    padding-bottom: 1rem;
+    width: 100%;
+  }
+
+  [value="Administrator"]:checked ~ .accordion [for="Administrator"] + ul {
+    display: block;
+  }
+}
+
 .html {
   @include layout;
+  @include navEffect;
 
   .header {
     @include header;
     @include headerEffect
+  }
+
+  .nav {
+    @include nav;
   }
 }

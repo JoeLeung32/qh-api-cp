@@ -1,27 +1,27 @@
-import axios from "axios";
+import {publicAPI} from "#cp/shared/axios.js";
 import {CPContainer} from "#cp/shared/container.js";
 import {Hepler} from "#cp/shared/helper.js";
 
 export class Login extends Hepler {
 
-	constructor(req, res, error) {
-		super(req, res, error);
+	constructor(req, res, next) {
+		super(req, res, next)
 		switch (req.method) {
 			case 'POST': {
-				this.postMethod(req, res, error)
+				this.postMethod(req, res, next)
 				break
 			}
 			default: {
-				this.pageRender('html', {
+				this.pageRender('html/html', {
 					title: req.t('login:login'),
-					page: 'login',
+					page: 'login/login',
 				})
 				break;
 			}
 		}
 	}
 
-	postMethod(req, res, error) {
+	postMethod(req, res, next) {
 		const {lng} = req.params
 		const username = req.body?.username
 		const password = req.body?.password
@@ -29,7 +29,7 @@ export class Login extends Hepler {
 			throw new Error('No info')
 		}
 
-		axios.post(process.env.CP_API_ENDPOINT + 'api/admin/panel/login', {
+		publicAPI.post('panel/login', {
 			username,
 			password,
 		})

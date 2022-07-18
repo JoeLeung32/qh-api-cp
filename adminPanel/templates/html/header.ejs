@@ -1,6 +1,9 @@
 <div class="header--navIcon gap-3">
     <div class="header--item">
-        <i class="fa-solid fa-bars"></i>
+        <div class="navTriggerPoint" data-navtoggle=".nav--main">
+            <i class="fa-solid fa-bars status-close"></i>
+            <i class="fa-solid fa-xmark status-open"></i>
+        </div>
     </div>
     <div class="header--item">
     </div>
@@ -9,7 +12,9 @@
 </div>
 <div class="header--logo gap-3">
     <div class="header--item">
-        <img src="/public/images/svg/logo.svg">
+        <a href="/<%= lng %>">
+            <img src="/public/images/svg/logo.svg">
+        </a>
     </div>
 </div>
 <div class="header--toolbar gap-3">
@@ -51,33 +56,37 @@
         <div class="dropdown--menu">
             <ul>
                 <li>
-                    <a>Logout</a>
+                    <a class="link" href="/<%= lng %>/logout">
+                        Logout
+                    </a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
 <script>
-	const headerDropdownMenuCancelSelected = () => {
-		Array.from(document.querySelectorAll('input[name="headerDropdownMenu"]'))
-			.forEach(obj => {
-				obj.checked = false
-			})
-	}
-	eventListener.onload.add(() => {
-		Array.from(document.querySelectorAll('input[name="headerDropdownMenu"]'))
-            .forEach(obj => {
-				obj.addEventListener('change', evt => {
-                    if (evt.currentTarget.checked) {
-						headerDropdownMenuCancelSelected()
-						evt.currentTarget.checked = true
-                    } else {
-						evt.currentTarget.checked = false
-                    }
-                })
-            })
-	}, 1)
-	eventListener.resize.add(() => {
-		headerDropdownMenuCancelSelected()
-	}, 1)
+	(() => {
+		const headerDropdownMenuCancelSelected = () => {
+			Array.from(document.querySelectorAll('input[name="headerDropdownMenu"]'))
+				.forEach(obj => {
+					obj.checked = false
+				})
+		}
+		eventListener.onload.add(() => {
+			Array.from(document.querySelectorAll('input[name="headerDropdownMenu"]'))
+				.forEach(obj => {
+					obj.addEventListener('change', evt => {
+						if (evt.currentTarget.checked) {
+							headerDropdownMenuCancelSelected()
+							evt.currentTarget.checked = true
+						} else {
+							evt.currentTarget.checked = false
+						}
+					})
+				})
+		}, 1)
+		eventListener.resize.add(() => {
+			headerDropdownMenuCancelSelected()
+		}, 1)
+    })()
 </script>

@@ -1,0 +1,47 @@
+<div class="nav--main">
+    <input checked id="Administrator" name="navMenu" type="checkbox" value="Administrator">
+    <ul class="accordion">
+        <li>
+            <label for="Administrator">
+                <%= t('dashboard:Administrator') %>
+            </label>
+            <ul>
+                <li>
+                    <a href="/<%= lng %>/administrator/activity-history">
+                        <%= t('dashboard:Activity History') %>
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+		(() => {
+			const classList = {
+				active: 'active',
+				open: 'transition--open',
+				close: 'transition--close',
+			}
+			eventListener.onload.add(() => {
+				document.querySelector('.navTriggerPoint').addEventListener('click', (evt) => {
+					const target = evt.currentTarget
+					let targets;
+                    const targetName = target.dataset.navtoggle;
+					if (targetName) targets = document.querySelectorAll(targetName)
+					if (targets && targets.length) {
+						targets.forEach(function (target) {
+							if (target.classList.contains(classList.open)) {
+								target.classList.remove(classList.open);
+								target.classList.add(classList.close);
+							} else {
+								target.classList.remove(classList.close);
+								target.classList.add(classList.open);
+							}
+							target.classList.toggle(classList.active);
+						});
+					}
+				})
+			})
+		})()
+    </script>
+
+</div>

@@ -1,7 +1,7 @@
 export class Hepler {
 	#req
 	#res
-	#error
+	#next
 	#locateUrl = {}
 	#locateUrlMapping = {
 		'en': 'en',
@@ -9,10 +9,10 @@ export class Hepler {
 		'zh-TW': 'tc',
 	}
 
-	constructor(req, res, error) {
+	constructor(req, res, next) {
 		this.#req = req
 		this.#res = res
-		this.#error = error
+		this.#next = next
 		process.env.LANGUAGE_SUPPORTED.split(',')
 			.forEach((locale) => {
 				const langCode = this.#locateUrlMapping[locale];
@@ -26,6 +26,7 @@ export class Hepler {
 			...options,
 			isAuth: false,
 			locateUrl: this.#locateUrl,
+			lng: this.#req.params?.lng
 		}
 		if (authToken && authToken.length) {
 			props.isAuth = true

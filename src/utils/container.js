@@ -1,6 +1,5 @@
 import {StatusCodes} from "#utils/error/errorMessage.js";
 import {knex} from "#utils/database/index.js";
-import dateFormat from "dateformat";
 
 export const container = (callback) => (
 	async (req, res, next) => {
@@ -29,11 +28,10 @@ export const authedContainer = (callback) => (
 			}
 
 			// Valid Token (Recorded in database)
-			const now = dateFormat(new Date().toISOString(), 'yyyy-mm-dd HH:MM:ss', true)
 			const sql = knex('ap-admin-token')
 				.select('token')
-				// .where('created_at', '<=', now)
-				.where('expiryAt', '>=', now)
+				// .where('createdAt', '<=', now)
+				.where('expiryAt', '>=', new Date())
 				.where({
 					token: authToken,
 					isValid: true

@@ -1,4 +1,4 @@
-import axios from "axios";
+import {privateAPI, setBearerToken} from "./axios.js";
 
 const URILngsMapping = {
 	en: 'en',
@@ -66,6 +66,7 @@ export const CPAuthContainer = (callback) => (
 			// GET Token
 			const authToken = req.signedCookies.token
 			req.session.authToken = authToken
+			setBearerToken(authToken)
 
 			// Token exist in cookie?
 			if (!authToken) {
@@ -74,26 +75,24 @@ export const CPAuthContainer = (callback) => (
 			}
 
 			// Valid Token (Recorded in database)
-			axios.get(process.env.CP_API_ENDPOINT + 'api/admin/panel/guard', {
-				headers: {
-					'Authorization': 'Bearer ' + authToken
-				}
-			}).then(response => {
-				if (response.status !== 200) {
+			privateAPI.get('panel/guard')
+				.then(response => {
+					if (response.status !== 200) {
+						res.clearCookie('token')
+						return res.redirect(`/${langCode}/login`)
+					}
+					res.cookie('token', authToken, {
+						expires: new Date(response.data.expiry),
+						path: '/',
+						secure: true,
+						signed: true,
+					})
+					return callback(req, res, next).catch(next)
+				})
+				.catch(e => {
 					res.clearCookie('token')
 					return res.redirect(`/${langCode}/login`)
-				}
-				res.cookie('token', authToken, {
-					expires: new Date(response.data.expiry),
-					path: '/',
-					secure: true,
-					signed: true,
 				})
-				return callback(req, res, next).catch(next)
-			}).catch(e => {
-				res.clearCookie('token')
-				return res.redirect(`/${langCode}/login`)
-			})
 		} catch (e) {
 			ErrorHandler(req, res, next, e)
 		}

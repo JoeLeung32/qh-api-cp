@@ -14,9 +14,11 @@ import FilesystemBackend from "i18next-fs-backend";
 // middleware END
 // normal
 import {app} from "#src/app.js";
-import {IndexComponent} from "#cp/pages/index.js";
-import {LoginComponent} from "#cp/pages/login.js";
-import {DashboardComponent} from "#cp/pages/dashboard.js";
+import {IndexComponent} from "#cp/templates/index/index.js";
+import {LoginComponent} from "#cp/templates/login/login.js";
+import {LogoutComponent} from "#cp/templates/logout/logout.js";
+import {DashboardComponent} from "#cp/templates/dashboard/dashboard.js";
+import {AdministratorActivityHistoryComponent} from "#cp/templates/administrator/activity_history/activity_history.js";
 
 const MemoryStore = createMemoryStore(session);
 const __dirname = process.cwd();
@@ -91,7 +93,9 @@ const AdminPanel = () => {
 	router.get('/', IndexComponent);
 	router.get('/:lng', IndexComponent);
 	router.all('/:lng/login', upload.none(), LoginComponent);
+	router.get('/:lng/logout', upload.none(), LogoutComponent);
 	router.get('/:lng/dashboard', DashboardComponent);
+	router.get('/:lng/administrator/activity-history', AdministratorActivityHistoryComponent);
 
 	// Generic
 	router.all('*', (req, res) => {

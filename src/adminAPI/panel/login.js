@@ -44,16 +44,15 @@ export const PanelLogin = container(async (req, res) => {
 
     // Assign New Token
     const authToken = nanoid(256);
-    const now = new Date().toISOString();
+    const now = new Date();
     let expiry = new Date();
     expiry.setTime(expiry.getTime() + parseInt(process.env.SESSION_TOKEN_LIFE));
-    expiry = expiry.toISOString();
 
     await knex('ap-admin-token')
         .insert({
             adminId: account.id,
             token: authToken,
-            created_at: now,
+            createdAt: now,
             expiryAt: expiry,
             isValid: true,
         })
