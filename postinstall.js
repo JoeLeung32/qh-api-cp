@@ -3,7 +3,7 @@ import uglifyjs from "@node-minify/uglify-js";
 
 minify({
 	compressor: uglifyjs,
-	input: './adminPanel/dev/js/*.js',
-	output: './adminPanel/public/js/app.js',
+	input: './cp/dev/js/*.js',
+	output: './cp/public/js/app.js',
 	callback: function(err, min) {}
 });

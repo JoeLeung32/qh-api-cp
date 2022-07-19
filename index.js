@@ -1,6 +1,6 @@
 import {app} from "#src/app.js"
 import {SystemInfo, SystemInfoPath} from "#utils/systemInfo.js";
-import {AdminPanelPath, AdminPanelRouter} from "./adminPanel/router.js";
+import {AdminPanelPath, AdminPanelRouter} from "./cp/router.js";
 import {AdminApiPath, AdminApiRouter} from "#src/adminAPI/router.js";
 
 app.get(SystemInfoPath, SystemInfo);

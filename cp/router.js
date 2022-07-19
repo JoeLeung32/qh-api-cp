@@ -33,8 +33,8 @@ i18next
 	.init({
 			debug: false,
 			backend: {
-				loadPath: path.join(__dirname, 'adminPanel/locales/{{lng}}/{{ns}}.json'),
-				addPath: path.join(__dirname, 'adminPanel/locales/{{lng}}/{{ns}}.missing.json'),
+				loadPath: path.join(__dirname, 'cp/locales/{{lng}}/{{ns}}.json'),
+				addPath: path.join(__dirname, 'cp/locales/{{lng}}/{{ns}}.missing.json'),
 			},
 			fallbackLng: 'en',
 			supportedLngs: process.env.LANGUAGE_SUPPORTED.split(','),
@@ -47,7 +47,7 @@ i18next
 
 const AdminPanel = () => {
 	// For Admin Panel
-	app.set('views', path.join(__dirname, 'adminPanel/templates'))
+	app.set('views', path.join(__dirname, 'cp/templates'))
 	app.set('view engine', 'ejs')
 
 	// Session & Cookie
@@ -67,8 +67,8 @@ const AdminPanel = () => {
 
 	// SASS
 	router.use(sassMiddleware({
-		src: path.join(__dirname, 'adminPanel/dev/scss'),
-		dest: path.join(__dirname, 'adminPanel/public/css'),
+		src: path.join(__dirname, 'cp/dev/scss'),
+		dest: path.join(__dirname, 'cp/public/css'),
 		debug: false,
 		indentedSyntax: false,
 		outputStyle: 'compressed',
@@ -82,7 +82,7 @@ const AdminPanel = () => {
 	router.use('/public/css', express.static(path.join(__dirname, "node_modules/bootstrap/dist/css")));
 	router.use('/public/js', express.static(path.join(__dirname, "node_modules/rxjs/dist/bundles")));
 	router.use('/public/js/fontawesome', express.static(path.join(__dirname, "node_modules/@fortawesome/fontawesome-free/js")));
-	router.use('/public', express.static('./adminPanel/public'));
+	router.use('/public', express.static('./cp/public'));
 
 	// Pre-load
 	router.all('*', (req, res, next) => {

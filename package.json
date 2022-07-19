@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "imports": {
-    "#cp/*": "./adminPanel/*",
+    "#cp/*": "./cp/*",
     "#env/*": "./env/*",
     "#src/*": "./src/*",
     "#utils/*": "./src/utils/*",
