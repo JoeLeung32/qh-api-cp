@@ -153,6 +153,10 @@ $width-aside: 300px;
         > li {
           margin-bottom: 0.5rem;
           white-space: nowrap;
+
+          a {
+            display: block;
+          }
         }
       }
     }
