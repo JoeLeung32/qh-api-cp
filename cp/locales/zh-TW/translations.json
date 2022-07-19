@@ -2,5 +2,7 @@
   "AdminPanel": "管理平台",
   "lngEN": "EN",
   "lngSC": "简体中文",
-  "lngTC": "正體中文"
+  "lngTC": "正體中文",
+  "tableResults": "結果：{{from}} 至 {{to}} 共 {{total}} 項",
+  "tablePrePage": " / 頁"
 }

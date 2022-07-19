@@ -248,6 +248,10 @@ $width-aside: 300px;
   padding: 1rem;
 }
 
+@mixin footer {
+  padding: .5rem;
+}
+
 .html {
   @include layout;
   @include navEffect;
@@ -263,5 +267,9 @@ $width-aside: 300px;
 
   .main {
     @include main;
+  }
+
+  .footer {
+    @include footer;
   }
 }

@@ -14,6 +14,7 @@ class Paginator {
 	#currentPageNumber = null;
 	#navObject = null;
 	#controllerObject = null;
+	#pageWording = ' / Page';
 
 	constructor(className, options) {
 		this.#className = className;
@@ -43,6 +44,9 @@ class Paginator {
 		}
 		if (options.eachPageMaxItems) {
 			this.#eachPageMaxItems = options.eachPageMaxItems;
+		}
+		if (options.pageWording) {
+			this.#pageWording = options.pageWording;
 		}
 		if (options.onClick) {
 			this.#onClick = options.onClick;
@@ -87,7 +91,7 @@ class Paginator {
 		const spanPageMaxItem = document.createElement('span');
 		const span = document.createElement('span');
 		spanPageMaxItem.innerHTML = this.#eachPageMaxItems;
-		span.innerHTML = ' / Page';
+		span.innerHTML = this.#pageWording;
 		controller.innerHTML = '';
 		controller.appendChild(spanPageMaxItem);
 		controller.appendChild(span);

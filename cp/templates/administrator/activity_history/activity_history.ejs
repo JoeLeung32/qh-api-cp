@@ -4,8 +4,8 @@
     <tr>
         <th>#</th>
         <th>User</th>
-        <th>Last Action</th>
-        <th>Activity</th>
+        <th>First Activity</th>
+        <th>Last Activity</th>
     </tr>
     </thead>
     <tbody>
@@ -15,13 +15,20 @@
                 <span><%= data.id %></span>
             </td>
             <td data-header="User">
-                <span><%= data.username %></span>
+                <span>
+                    <span class="position-relative">
+                        <%= data.username %>
+                        <% if (data.isValid) { %>
+                            <span class="badge bg-success">Online</span>
+                        <% } %>
+                    </span>
+                </span>
             </td>
-            <td data-header="Last Action">
+            <td data-header="First Activity">
+                <span><%= data.createdAt %></span>
+            </td>
+            <td data-header="Last Activity">
                 <span><%= data.updatedAt %></span>
-            </td>
-            <td data-header="Activity">
-                <span><%= data.isValid ? 'true' : 'false' %></span>
             </td>
         </tr>
     <% }) %>
@@ -29,7 +36,7 @@
 </table>
 <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
     <div>
-        Results: <%= pagination.from || 1 %> - <%= pagination.to %> of <%= pagination.total %>
+        <%= t('tableResults', {from: pagination.from || 1, to: pagination.to, total: pagination.total}) %>
     </div>
     <div class="d-flex flex-wrap justify-content-end gap-2">
         <div class="paginator"></div>
@@ -65,6 +72,7 @@
 			maxPage: <%= lastPage %>,
 			displayLength: 5,
 			eachPageMaxItems: <%= perPage %>,
+			pageWording: '<%= t("tablePrePage") %>',
 			onClick: function (type, number) {
 				params.set('page', number)
 				params.set('perPage', <%= perPage %>)

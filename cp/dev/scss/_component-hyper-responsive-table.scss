@@ -19,7 +19,7 @@ table.hyper-responsive-table {
 
   th, td {
     @include media-breakpoint-up(md) {
-      padding: .5rem .5rem;
+      padding: .5rem;
     }
   }
 
@@ -45,7 +45,7 @@ table.hyper-responsive-table {
         content: attr(data-header);
         display: table-cell;
         font-weight: bold;
-        padding: .5rem 1rem;
+        padding: .5rem;
         width: 150px;
         word-break: break-word;
 
@@ -56,7 +56,7 @@ table.hyper-responsive-table {
 
       > span, > div {
         display: table-cell;
-        padding: .5rem 1rem;
+        padding: .5rem;
         vertical-align: top;
 
         @include media-breakpoint-up(md) {

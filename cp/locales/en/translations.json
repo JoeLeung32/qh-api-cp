@@ -2,5 +2,7 @@
   "AdminPanel": "Admin Panel",
   "lngEN": "EN",
   "lngSC": "简体中文",
-  "lngTC": "正體中文"
+  "lngTC": "正體中文",
+  "tableResults": "Results: {{from}} - {{to}} of {{total}}",
+  "tablePrePage": " / Page"
 }
