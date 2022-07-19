@@ -1,6 +1,6 @@
-import {privateAPI} from "#cp/shared/axios.js";
-import {CPAuthContainer, i18nWorker} from "#cp/shared/container.js";
-import {Hepler} from "#cp/shared/helper.js";
+import {privateAPI} from "#cp/controller/axios.js";
+import {CPAuthContainer, i18nWorker} from "#cp/controller/container.js";
+import {Hepler} from "#cp/controller/helper.js";
 
 export class Logout extends Hepler {
 	constructor(req, res, next) {

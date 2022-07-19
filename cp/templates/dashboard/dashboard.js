@@ -1,5 +1,5 @@
-import {CPAuthContainer} from "#cp/shared/container.js";
-import {Hepler} from "#cp/shared/helper.js";
+import {CPAuthContainer} from "#cp/controller/container.js";
+import {Hepler} from "#cp/controller/helper.js";
 
 export class Dashboard extends Hepler {
 	constructor(req, res, next) {

@@ -1,38 +1,53 @@
 import moment from "moment-timezone";
 import {knex} from "#utils/database/index.js";
-import {CPAuthContainer} from "#cp/shared/container.js";
-import {Hepler} from "#cp/shared/helper.js";
+import {CPAuthContainer} from "#cp/controller/container.js";
+import {Hepler} from "#cp/controller/helper.js";
 
 export class ActivityHistory extends Hepler {
 	constructor(req, res, next) {
 		super(req, res, next)
-		this.getList()
+		const {page, perPage} = req.query
+		this.getList(page, perPage)
 			.then(response => {
+				const {data, pagination} = response
 				this.pageRender('html/html', {
 					title: req.t('dashboard:Activity History'),
 					page: 'administrator/activity_history/activity_history',
-					data: response
+					list: data,
+					pagination: pagination
 				})
 			})
 	}
 
-	async getList() {
+	async getList(page = 1, perPage = 25) {
 		const dateMask = 'MMM-DD HH:mm:ss'
+		const paginate = {
+			perPage: perPage,
+			currentPage: page,
+			isFromStart: false,
+			isLengthAware: true,
+		}
+
 		const sql = knex('ap-admin-token AS at')
 			.select(
 				'at.id',
-				'at.createdAt', 'at.updatedAt', 'at.updatedAt',
+				'at.createdAt', 'at.updatedAt',
 				'at.expiryAt', 'at.isValid',
 				'a.username')
 			.leftJoin('ap-admin AS a', 'at.adminId', 'a.id')
 			.orderBy('at.createdAt', 'desc')
-		const tokens = await sql
-		tokens.forEach((data, idx) => {
-			tokens[idx].createdAt = moment(data.createdAt).format(dateMask)
-			tokens[idx].updatedAt = moment(data.updatedAt).format(dateMask)
-			tokens[idx].expiryAt = moment(data.expiryAt).format(dateMask)
+		const result = await sql.paginate(paginate)
+
+		result.data.forEach((d, idx) => {
+			result.data[idx].createdAt = moment(d.createdAt).format(dateMask)
+			result.data[idx].updatedAt = moment(d.updatedAt).format(dateMask)
+			result.data[idx].expiryAt = moment(d.expiryAt).format(dateMask)
 		})
-		return tokens
+
+		return {
+			data: result.data,
+			pagination: result.pagination
+		}
 	}
 }
 

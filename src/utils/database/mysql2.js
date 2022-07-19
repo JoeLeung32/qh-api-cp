@@ -1,6 +1,8 @@
 import {createRequire} from 'module';
+import {attachPaginate} from "knex-paginate";
 
 const require = createRequire(import.meta.url);
+attachPaginate();
 
 export const mysql2 = () => {
 	return require('knex')({

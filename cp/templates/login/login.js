@@ -1,6 +1,6 @@
-import {publicAPI} from "#cp/shared/axios.js";
-import {CPContainer} from "#cp/shared/container.js";
-import {Hepler} from "#cp/shared/helper.js";
+import {publicAPI} from "#cp/controller/axios.js";
+import {CPContainer} from "#cp/controller/container.js";
+import {Hepler} from "#cp/controller/helper.js";
 
 export class Login extends Hepler {
 

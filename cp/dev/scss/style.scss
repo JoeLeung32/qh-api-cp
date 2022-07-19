@@ -1,10 +1,19 @@
 @import "bootstrap";
 
+// Components
+@import "component-hyper-responsive-table";
+@import "component-paginator";
+
 // Templates
 @import "template-html";
 @import "template-login";
 
 // global
+body {
+  background-color: #6363A2;
+}
+
 a {
+  color: #6363A2;
   text-decoration: none;
 }

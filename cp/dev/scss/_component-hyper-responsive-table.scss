@@ -1,0 +1,73 @@
+@import "bootstrap";
+
+table.hyper-responsive-table {
+  tr {
+    border-color: #b1b1b2;
+    border-style: solid;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+
+    @include media-breakpoint-up(md) {
+      border: 0;
+    }
+  }
+
+  th {
+    border-bottom-color: currentColor;
+    border-bottom-width: 1px;
+  }
+
+  th, td {
+    @include media-breakpoint-up(md) {
+      padding: .5rem .5rem;
+    }
+  }
+
+  thead {
+    display: none;
+
+    @include media-breakpoint-up(md) {
+      display: table-header-group
+    }
+  }
+
+  tbody {
+    td {
+      display: block;
+      vertical-align: top;
+      word-break: break-word;
+      @include media-breakpoint-up(md) {
+        display: table-cell
+      }
+
+      &:before {
+        background-color: #f7f2f4;
+        content: attr(data-header);
+        display: table-cell;
+        font-weight: bold;
+        padding: .5rem 1rem;
+        width: 150px;
+        word-break: break-word;
+
+        @include media-breakpoint-up(md) {
+          display: none;
+        }
+      }
+
+      > span, > div {
+        display: table-cell;
+        padding: .5rem 1rem;
+        vertical-align: top;
+
+        @include media-breakpoint-up(md) {
+          display: block;
+          padding: 0
+        }
+      }
+
+      .message:before {
+        content: none
+      }
+    }
+  }
+}

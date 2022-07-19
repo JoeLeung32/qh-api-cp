@@ -1,24 +1,76 @@
 <h1><%= title %></h1>
-<div class="table-responsive">
-    <table class="table">
-        <thead>
+<table class="hyper-responsive-table mb-3">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>User</th>
+        <th>Last Action</th>
+        <th>Activity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% list.forEach((data) => { %>
         <tr>
-            <th>#</th>
-            <th>User</th>
-            <th>Last Action</th>
-            <th>Activity</th>
+            <td data-header="#">
+                <span><%= data.id %></span>
+            </td>
+            <td data-header="User">
+                <span><%= data.username %></span>
+            </td>
+            <td data-header="Last Action">
+                <span><%= data.updatedAt %></span>
+            </td>
+            <td data-header="Activity">
+                <span><%= data.isValid ? 'true' : 'false' %></span>
+            </td>
         </tr>
-        </thead>
-        <tbody>
-        <% for(var i = 0; i < data.length; i++) { %>
-            <tr>
-                <td><%= data[i].id %></td>
-                <td><%= data[i].username %></td>
-                <td><%= data[i].updatedAt %></td>
-                <td><%= data[i].isValid ? 'true' : 'false' %></td>
-            </tr>
-        <% } %>
-
-        </tbody>
-    </table>
+    <% }) %>
+    </tbody>
+</table>
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+    <div>
+        Results: <%= pagination.from || 1 %> - <%= pagination.to %> of <%= pagination.total %>
+    </div>
+    <div class="d-flex flex-wrap justify-content-end gap-2">
+        <div class="paginator"></div>
+        <div>
+            <select name="perPage">
+                <option value="10" selected>10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+        </div>
+    </div>
 </div>
+<script>
+    <% const currentPage = pagination.currentPage %>
+    <% const lastPage = pagination.lastPage %>
+    <% const perPage = pagination.perPage %>
+	eventListener.onload.add(() => {
+		const params = new URLSearchParams(window.location.search)
+		const prePageSwitcher = document.querySelector('select[name="perPage"]')
+		prePageSwitcher.value = <%= perPage %>;
+		prePageSwitcher.addEventListener('change', (evt) => {
+			params.set('perPage', evt.currentTarget.value)
+			window.location.search = params.toString()
+		})
+		const paginator = new Paginator('paginator', {
+			parent: '.paginator',
+			firstPageString: '<i class="fa-solid fa-angles-left"></i>',
+			lastPageString: '<i class="fa-solid fa-angles-right"></i>',
+			prevPageString: '<i class="fa-solid fa-angle-left"></i>',
+			nextPageString: '<i class="fa-solid fa-angle-right"></i>',
+			startForm: <%= currentPage %>,
+			maxPage: <%= lastPage %>,
+			displayLength: 5,
+			eachPageMaxItems: <%= perPage %>,
+			onClick: function (type, number) {
+				params.set('page', number)
+				params.set('perPage', <%= perPage %>)
+				window.location.search = params.toString()
+			},
+		})
+		paginator.init()
+	}, 1)
+</script>
