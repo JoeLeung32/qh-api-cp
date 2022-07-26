@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import "values";
 
 $width-nav: 220px;
 $width-aside: 300px;
@@ -256,6 +257,16 @@ $width-aside: 300px;
   padding: .5rem;
 }
 
+@mixin devBanner {
+  background-color: $main-color;
+  color: #fff;
+  font-size: .8rem;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0 8px 1px;
+  user-select: none;
+}
+
 .html {
   @include layout;
   @include navEffect;
@@ -275,5 +286,9 @@ $width-aside: 300px;
 
   .footer {
     @include footer;
+  }
+
+  .devBanner {
+    @include devBanner
   }
 }

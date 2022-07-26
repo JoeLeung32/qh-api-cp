@@ -26,7 +26,8 @@ export class Hepler {
 			...options,
 			isAuth: false,
 			locateUrl: this.#locateUrl,
-			lng: this.#req.params?.lng
+			lng: this.#req.params?.lng,
+			env: process.env.NODE_ENV
 		}
 		if (authToken && authToken.length) {
 			props.isAuth = true
