@@ -8,11 +8,12 @@ import {PanelLogout} from "#admin/panel/logout.js";
 import {PanelGuard} from "#admin/panel/guard.js";
 import {PanelSetting} from "#admin/panel/settings.js";
 
-const router = express.Router();
-const upload = multer({
-	dest: 'uploads/'
-});
 const AdminApi = () => {
+	const router = express.Router();
+	const upload = multer({
+		dest: 'uploads/'
+	});
+
 	// Enhance API security
 	router.use(helmetBasic);
 
@@ -55,5 +56,4 @@ const AdminApi = () => {
 	});
 	return router;
 }
-export const AdminApiPath = '/api/admin';
 export const AdminApiRouter = AdminApi();
