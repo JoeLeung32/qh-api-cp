@@ -2,11 +2,11 @@ import bcrypt from 'bcrypt'
 
 export const passwordCrypt = async (password) => {
     return new Promise((resolve, reject) => {
-        bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.genSalt(10, (err, salt) => {
             if (err) {
                 reject(err)
             }
-            bcrypt.hash(password, salt, function (err, hash) {
+            bcrypt.hash(password, salt, (err, hash) => {
                 if (err) {
                     reject(err)
                 }
@@ -18,7 +18,7 @@ export const passwordCrypt = async (password) => {
 
 export const passwordCompare = async (plainPass, hash, callback) => {
     return new Promise((resolve, reject) => {
-        bcrypt.compare(plainPass, hash, function (err, isPasswordMatch) {
+        bcrypt.compare(plainPass, hash, (err, isPasswordMatch) => {
             if (err) {
                 reject(err)
             }

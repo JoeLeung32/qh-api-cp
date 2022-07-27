@@ -1,7 +1,6 @@
 import express from "express";
 import multer from "multer";
 import {appGenericCORS, helmetBasic} from "#src/app.js";
-import {Install} from "#admin/install.js";
 import {Uploader} from "#admin/upload.js";
 import {PanelLogin} from "#admin/panel/login.js";
 import {PanelLogout} from "#admin/panel/logout.js";
@@ -46,9 +45,6 @@ const AdminApi = () => {
 		{name: 'file1', maxCount: 1},
 		{name: 'file2', maxCount: 2}
 	]), Uploader.fields);
-
-	// Install
-	router.get('/install', Install);
 
 	// Generic
 	router.all('*', (req, res) => {

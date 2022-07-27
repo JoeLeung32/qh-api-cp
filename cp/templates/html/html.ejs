@@ -11,10 +11,10 @@
     <script src="/public/js/app.js"></script>
 </head>
 <body>
-<div class="html" data-mode="<%= env %>">
-    <% if (['dev'].includes(env)) { %>
+<div class="html" data-env="<%= env %>">
+    <% if (['development'].includes(env)) { %>
         <div class="devBanner">
-            Deployment mode
+            <%= env %> mode
         </div>
     <% } %>
     <% if (isAuth) { %>

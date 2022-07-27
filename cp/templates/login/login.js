@@ -1,8 +1,8 @@
 import {publicAPI} from "#cp/controller/axios.js";
 import {CPContainer} from "#cp/controller/container.js";
-import {Hepler} from "#cp/controller/helper.js";
+import {Helper} from "#cp/controller/helper.js";
 
-export class Login extends Hepler {
+export class Login extends Helper {
 	constructor(req, res, next) {
 		super(req, res, next)
 		this.pageRender('html/html', {

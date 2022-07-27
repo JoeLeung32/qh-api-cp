@@ -1,4 +1,4 @@
-export class Hepler {
+export class Helper {
 	#req
 	#res
 	#next
