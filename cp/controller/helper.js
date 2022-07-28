@@ -23,6 +23,7 @@ export class Helper {
 	pageRender(view, options) {
 		const authToken = this.#req.session.authToken
 		const props = {
+			error: null,
 			...options,
 			isAuth: false,
 			locateUrl: this.#locateUrl,

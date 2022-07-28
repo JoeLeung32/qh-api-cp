@@ -1,3 +1,4 @@
+/*
 const bcrypt = require('bcrypt');
 
 function passwordCrypt(password) {
@@ -42,3 +43,4 @@ exports.seed = function (knex) {
 			}
 		})
 };
+*/

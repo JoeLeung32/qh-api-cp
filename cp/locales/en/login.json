@@ -1,5 +1,8 @@
 {
-  "login": "Login",
-  "username": "Username",
-  "password": "Password"
+  "Login": "Login",
+  "Username": "Username",
+  "Password": "Password",
+  "Confirm Password": "Confirm Password",
+  "Create Account": "Create Account",
+  "Create": "Create"
 }

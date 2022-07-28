@@ -1,5 +1,8 @@
 {
-  "login": "登入",
-  "username": "使用者名称",
-  "password": "密码"
+  "Login": "登入",
+  "Username": "使用者名称",
+  "Password": "密码",
+  "Confirm Password": "確認密碼",
+  "Create Account": "建立帳號",
+  "Create": "建立"
 }

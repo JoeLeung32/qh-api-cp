@@ -1,8 +1,13 @@
 <div class="login">
 	<div>
 		<h1>
-			<%= t('AdminPanel') %>
+			<%= t('login:Create Account') %>
 		</h1>
+		<% if (error) { %>
+			<div class="alert alert-danger" role="alert">
+				<%= error.message %>
+			</div>
+		<% } %>
 		<div>
 			<form method="post">
 				<div class="mb-3 form-floating">
@@ -15,9 +20,14 @@
 						   placeholder="<%= t('login:Password') %>">
 					<label for="password"><%= t('login:Password') %></label>
 				</div>
+				<div class="mb-3 form-floating">
+					<input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+						   placeholder="<%= t('login:Confirm Password') %>">
+					<label for="password"><%= t('login:Confirm Password') %></label>
+				</div>
 				<div class="mb-3 d-grid">
 					<button type="submit" class="btn btn-primary">
-						<%= t('login:Login') %>
+						<%= t('login:Create') %>
 					</button>
 				</div>
 			</form>
