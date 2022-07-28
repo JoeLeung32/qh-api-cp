@@ -1,0 +1,15 @@
+<h1><%= t('dashboard:Media Library') %></h1>
+<div>
+    # folder - # asset
+</div>
+<%- include('./media-library-tools') %>
+<%- include('./media-library-folders') %>
+<hr class="my-4">
+<%- include('./media-library-assets') %>
+<script>
+	(() => {
+		eventListener.onload.add(() => {
+			core.bind.selectAll()
+		}, 1)
+	})()
+</script>

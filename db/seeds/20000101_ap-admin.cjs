@@ -1,3 +1,4 @@
+exports.seed = function () { }
 /*
 const bcrypt = require('bcrypt');
 

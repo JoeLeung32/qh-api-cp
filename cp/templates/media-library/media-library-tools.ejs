@@ -1,0 +1,118 @@
+<div class="my-3 row">
+    <div class="col-12 col-md-6 py-1 d-flex flex-wrap gap-2 order-1 order-md-0">
+        <div>
+            <label class="eleSelect btn btn-light" data-select=".mediaElement">
+                <input type="checkbox">
+                <i class="fa-solid fa-square "></i>
+                <i class="fa-solid fa-square-check"></i>
+            </label>
+        </div>
+        <div>
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    Sort by
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            Most recent uploads
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            Oldest uploads
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            Alphabetical order (A to Z)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            Reverse alphabetical order (Z to A)
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            Most recent update
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            Oldest update
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    <i class="fa-solid fa-filter"></i>
+                    <span class="ms-1">Filters</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li class="px-2 pb-2">
+                        <select class="form-select">
+                            <option selected>createAt</option>
+                            <option value="1">updateAt</option>
+                            <option value="2">type</option>
+                        </select>
+                    </li>
+                    <li class="px-2 pb-2">
+                        <select class="form-select">
+                            <option selected>is</option>
+                            <option value="1">is not</option>
+                            <option value="2">is greater than</option>
+                            <option value="2">is greater than or equal to</option>
+                            <option value="2">is lower than</option>
+                            <option value="2">is lower than or equal to</option>
+                        </select>
+                    </li>
+                    <li class="px-2 pb-2 row">
+                        <div class="col">
+                            Date
+                        </div>
+                        <div class="col">
+                            Time
+                        </div>
+                    </li>
+                    <li class="px-2 pb-2">
+                        <select class="form-select">
+                            <option value="1">audio</option>
+                            <option value="2">file</option>
+                            <option value="2">image</option>
+                            <option value="2">video</option>
+                        </select>
+                    </li>
+                    <li class="px-2 d-grid">
+                        <button class="btn">
+                            <i class="fa-solid fa-plus"></i>
+                            Add Filter
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 py-1 d-flex flex-wrap gap-2 justify-content-md-end order-0 order-md-1">
+        <div>
+            <div class="btn btn-light">
+                <i class="fa-solid fa-folder-plus"></i>
+                <span class="ms-1">Add New Folder</span>
+            </div>
+        </div>
+        <div>
+            <div class="btn btn-light">
+                <i class="fa-solid fa-file-circle-plus"></i>
+                <span class="ms-1">Add New Assets</span>
+            </div>
+        </div>
+        <div>
+            <div class="btn btn-light">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+        </div>
+    </div>
+</div>

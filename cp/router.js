@@ -14,7 +14,8 @@ import {IndexComponent} from "#cp/templates/index/index.js";
 import {LoginComponent, LoginComponentPOST} from "#cp/templates/login/login.js";
 import {LogoutComponent} from "#cp/templates/logout/logout.js";
 import {DashboardComponent} from "#cp/templates/dashboard/dashboard.js";
-import {AdministratorActivityHistoryComponent} from "#cp/templates/administrator/activity_history/activity_history.js";
+import {MediaLibraryComponent} from "#cp/templates/media-library/media-library.js";
+import {AdministratorActivityHistoryComponent} from "#cp/templates/administrator/activity-history/activity-history.js";
 
 const AdminPanel = () => {
 	const __dirname = process.cwd()
@@ -40,7 +41,7 @@ const AdminPanel = () => {
 	router.use(express.json())
 
 	// Static files
-	router.use('/public/css', _staticPath("node_modules/bootstrap/dist/css"))
+	router.use('/public/bootstrap/js', _staticPath("node_modules/bootstrap/dist/js"))
 	router.use('/public/js/rxjs', _staticPath("node_modules/rxjs/dist/bundles"))
 	router.use('/public/js/fontawesome', _staticPath("node_modules/@fortawesome/fontawesome-free/js"))
 	router.use('/public', express.static('./cp/public'))
@@ -53,6 +54,7 @@ const AdminPanel = () => {
 		.post(upload.none(), LoginComponentPOST)
 	router.get('/:lng/logout', LogoutComponent)
 	router.get('/:lng/dashboard', DashboardComponent)
+	router.get('/:lng/media-library', MediaLibraryComponent)
 	router.get('/:lng/administrator/activity-history', AdministratorActivityHistoryComponent)
 
 	// Generic

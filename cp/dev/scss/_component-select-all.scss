@@ -1,0 +1,29 @@
+.eleSelect {
+  cursor: pointer;
+  padding: 10px;
+  user-select: none;
+
+  & > {
+    input[type="checkbox"] {
+      display: none;
+
+      & ~ .fa-square {
+        display: block;
+
+        &-check {
+          display: none;
+        }
+      }
+
+      &:checked {
+        & ~ .fa-square {
+          display: none;
+
+          &-check {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

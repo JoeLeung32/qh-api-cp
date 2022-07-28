@@ -12,7 +12,7 @@ class ActivityHistory extends Helper {
 				const {data, pagination} = response
 				this.pageRender('html/html', {
 					title: req.t('dashboard:Activity History'),
-					page: 'administrator/activity_history/activity_history',
+					page: 'administrator/activity-history/activity-history',
 					list: data,
 					pagination: pagination
 				})

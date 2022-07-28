@@ -1,8 +1,8 @@
 import {knex} from "#utils/database/index.js";
 import {publicAPI} from "#cp/controller/axios.js";
 import {CPContainer} from "#cp/controller/container.js";
-import {passwordCrypt} from "#utils/bcrypt.js";
 import {Helper} from "#cp/controller/helper.js";
+import {passwordCrypt} from "#utils/bcrypt.js";
 
 class Login extends Helper {
 	constructor(req, res, next) {
@@ -17,7 +17,7 @@ class Login extends Helper {
 			noAccount: () => {
 				this.pageRender('html/html', {
 					title: req.t('login:Create Account'),
-					page: 'login/create_account',
+					page: 'login/create-account',
 				})
 			}
 		})
@@ -60,7 +60,7 @@ class LoginPost extends Helper {
 				.catch((e) => {
 					this.pageRender('html/html', {
 						title: req.t('login:Create Account'),
-						page: 'login/create_account',
+						page: 'login/create-account',
 						error: e,
 					})
 				})

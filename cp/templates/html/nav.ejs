@@ -1,6 +1,6 @@
 <div class="nav--main">
     <input id="content" name="navMenu" type="checkbox" value="content"<%= ['content', 'contents'].includes(pathCategory) ? ' checked' : ''%>>
-    <input id="media" name="navMenu" type="checkbox" value="media"<%= ['media'].includes(pathCategory) ? ' checked' : ''%>>
+    <input id="media-library" name="navMenu" type="checkbox" value="media-library"<%= ['media-library'].includes(pathCategory) ? ' checked' : ''%>>
     <input id="administrator" name="navMenu" type="checkbox" value="administrator"<%= ['administrator'].includes(pathCategory) ? ' checked' : ''%>>
     <ul class="accordion">
         <li>
@@ -28,13 +28,13 @@
             </ul>
         </li>
         <li>
-            <label for="media">
-                <%= t('dashboard:Media') %> <i class="fa-solid fa-angle-left"></i>
+            <label for="media-library">
+                <%= t('dashboard:Media Library') %> <i class="fa-solid fa-angle-left"></i>
             </label>
             <ul>
                 <li>
-                    <a href="/<%= lng %>/media">
-                        <%= t('dashboard:Media') %>
+                    <a href="/<%= lng %>/media-library">
+                        <%= t('dashboard:Media Library') %>
                     </a>
                 </li>
             </ul>
