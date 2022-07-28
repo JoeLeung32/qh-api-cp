@@ -223,6 +223,9 @@ $width-aside: 300px;
 
         a {
           color: var(--bs-body-color);
+          display: flex;
+          flex-wrap: wrap;
+          flex: 1;
         }
       }
 
