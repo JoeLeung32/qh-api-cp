@@ -10,7 +10,7 @@ class Login extends Helper {
 		this.askAdminAccount({
 			hasAccount: () => {
 				this.pageRender('html/html', {
-					title: req.t('login:login'),
+					title: req.t('login:Login'),
 					page: 'login/login',
 				})
 			},
