@@ -17,20 +17,22 @@ function passwordCrypt(password) {
 }
 
 exports.seed = function (knex) {
+	const username = 'admin'
+	const password = 'admin'
 	return knex('ap-admin')
 		.where({
-			username: 'admin'
+			username: username
 		})
 		.first()
 		.then(function(accounts) {
 			if (!accounts) {
 				return knex('ap-admin')
 					.then(function () {
-						return passwordCrypt('admin')
+						return passwordCrypt(password)
 							.then(function (hash) {
 								return knex('ap-admin')
 									.insert({
-										username: 'admin',
+										username: username,
 										password: hash,
 										createdAt: new Date(),
 										isValid: true,
