@@ -3,7 +3,7 @@ import {knex} from "#utils/database/index.js";
 import {CPAuthContainer} from "#cp/controller/container.js";
 import {Helper} from "#cp/controller/helper.js";
 
-export class ActivityHistory extends Helper {
+class ActivityHistory extends Helper {
 	constructor(req, res, next) {
 		super(req, res, next)
 		const {page, perPage} = req.query

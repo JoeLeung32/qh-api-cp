@@ -279,10 +279,11 @@ $width-aside: 300px;
   .nav {
     @include nav;
 
+    [value="Content"]:checked ~ .accordion [for="Content"],
+    [value="Media"]:checked ~ .accordion [for="Media"],
     [value="Administrator"]:checked ~ .accordion [for="Administrator"] {
       & > svg {
-        -webkit-transform: rotate(180deg);
-        transform: rotate(180deg);
+        transform: rotate(-90deg);
       }
       & + ul {
         display: block;

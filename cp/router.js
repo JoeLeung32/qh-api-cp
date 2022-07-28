@@ -8,12 +8,13 @@ import {middlewareSass} from "#cp/middlewares/sass.js";
 import {middlewareI18n} from "#cp/middlewares/i18n.js";
 // middleware END
 // normal
+import {app} from "#src/app.js";
+import {Error404Component} from "#cp/templates/error/404.js";
 import {IndexComponent} from "#cp/templates/index/index.js";
 import {LoginComponent, LoginComponentPOST} from "#cp/templates/login/login.js";
 import {LogoutComponent} from "#cp/templates/logout/logout.js";
 import {DashboardComponent} from "#cp/templates/dashboard/dashboard.js";
 import {AdministratorActivityHistoryComponent} from "#cp/templates/administrator/activity_history/activity_history.js";
-import {app} from "#src/app.js";
 
 const AdminPanel = () => {
 	const __dirname = process.cwd()
@@ -24,6 +25,7 @@ const AdminPanel = () => {
 	const _staticPath = (sourcePath) => {
 		return express.static(path.join(__dirname, sourcePath))
 	}
+	let params
 
 	app.set('views', path.join(__dirname, 'cp/templates'))
 	app.set('view engine', 'ejs')
@@ -43,26 +45,18 @@ const AdminPanel = () => {
 	router.use('/public/js/fontawesome', _staticPath("node_modules/@fortawesome/fontawesome-free/js"))
 	router.use('/public', express.static('./cp/public'))
 
-
-	// Pre-load
-	router.all('*', (req, res, next) => {
-		next()
-	})
-
 	// Pages
-	router.get('/', IndexComponent);
-	router.get('/:lng', IndexComponent);
+	router.get('/', IndexComponent)
+	router.get('/:lng', IndexComponent)
 	router.route('/:lng/login')
 		.get(LoginComponent)
 		.post(upload.none(), LoginComponentPOST)
-	router.get('/:lng/logout', LogoutComponent);
-	router.get('/:lng/dashboard', DashboardComponent);
-	router.get('/:lng/administrator/activity-history', AdministratorActivityHistoryComponent);
+	router.get('/:lng/logout', LogoutComponent)
+	router.get('/:lng/dashboard', DashboardComponent)
+	router.get('/:lng/administrator/activity-history', AdministratorActivityHistoryComponent)
 
 	// Generic
-	router.all('*', (req, res) => {
-		res.status(404).send('Page Not Found.');
-	});
+	router.get('/:lng/*', Error404Component)
 	return router;
 }
 export const AdminPanelRouter = AdminPanel();

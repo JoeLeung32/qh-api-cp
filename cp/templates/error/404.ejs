@@ -1,0 +1,11 @@
+<h1>
+    <%= t('error:Page Not Found') %>
+</h1>
+<p class="mt-2">
+    <%= url %>
+</p>
+<p class="mt-2">
+    <a href="javascript:void(0)" onclick="history.back()"><%= t('error:Back to previous page') %></a>
+    /
+    <a href="/<%= lng %>/dashboard" onclick="history.back()"><%= t('error:Back to dashboard') %></a>
+</p>

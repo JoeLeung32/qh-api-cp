@@ -1,9 +1,47 @@
 <div class="nav--main">
-    <input checked id="Administrator" name="navMenu" type="checkbox" value="Administrator">
+    <input id="Content" name="navMenu" type="checkbox" value="Content">
+    <input id="Media" name="navMenu" type="checkbox" value="Media">
+    <input id="Administrator" name="navMenu" type="checkbox" value="Administrator">
     <ul class="accordion">
         <li>
+            <label for="Content">
+                <a href="/<%= lng %>/dashboard">
+                    <%= t('dashboard:Dashboard') %>
+                </a>
+            </label>
+        </li>
+        <li>
+            <label for="Content">
+                <%= t('dashboard:Content') %> <i class="fa-solid fa-angle-left"></i>
+            </label>
+            <ul>
+                <li>
+                    <a href="/<%= lng %>/contents">
+                        <%= t('dashboard:Contents') %>
+                    </a>
+                </li>
+                <li>
+                    <a href="/<%= lng %>/content/create">
+                        <%= t('dashboard:Create Content') %>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <label for="Media">
+                <%= t('dashboard:Media') %> <i class="fa-solid fa-angle-left"></i>
+            </label>
+            <ul>
+                <li>
+                    <a href="/<%= lng %>/media">
+                        <%= t('dashboard:Media') %>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
             <label for="Administrator">
-                <%= t('dashboard:Administrator') %> <i class="fa-solid fa-angle-up"></i>
+                <%= t('dashboard:Administrator') %> <i class="fa-solid fa-angle-left"></i>
             </label>
             <ul>
                 <li>

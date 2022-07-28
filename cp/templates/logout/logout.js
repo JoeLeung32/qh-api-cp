@@ -2,7 +2,7 @@ import {privateAPI} from "#cp/controller/axios.js";
 import {CPAuthContainer, i18nWorker} from "#cp/controller/container.js";
 import {Helper} from "#cp/controller/helper.js";
 
-export class Logout extends Helper {
+class Logout extends Helper {
 	constructor(req, res, next) {
 		super(req, res, next)
 		const langCode = i18nWorker(req, res, next)

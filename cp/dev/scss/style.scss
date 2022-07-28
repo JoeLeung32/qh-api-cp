@@ -12,7 +12,9 @@
 
 // global
 body {
-  background-color: $main-color;
+  &[data-auth] {
+    background-color: $main-color;
+  }
 }
 
 a {

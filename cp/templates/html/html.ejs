@@ -5,19 +5,20 @@
     <title><%= title %> | <%= t('AdminPanel') %></title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico">
     <link rel="stylesheet" href="/public/css/bootstrap.min.css">
     <link rel="stylesheet" href="/public/css/style.css">
     <script src="/public/js/rxjs/rxjs.umd.js"></script>
     <script src="/public/js/app.js"></script>
 </head>
-<body>
+<body<%= isAuth ? ' data-auth' : ''%>>
 <div class="html" data-env="<%= env %>">
-    <% if (['development'].includes(env)) { %>
-        <div class="devBanner">
-            <%= env %> mode
-        </div>
-    <% } %>
     <% if (isAuth) { %>
+        <% if (['development'].includes(env)) { %>
+            <div class="devBanner">
+                <%= env %> mode
+            </div>
+        <% } %>
         <div class="header">
             <%- include('./header') %>
         </div>

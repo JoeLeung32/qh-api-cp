@@ -19,7 +19,7 @@ export const middlewareI18n = (router) => {
 				load: 'currentOnly',
 				preload: process.env.LANGUAGE_SUPPORTED.split(','),
 				defaultNs: 'translations',
-				ns: ['translations', 'login', 'dashboard']
+				ns: ['translations', 'error', 'login', 'dashboard']
 			}
 		)
 
