@@ -1,5 +1,4 @@
 @import "bootstrap";
-@import "values";
 
 $width-nav: 220px;
 $width-aside: 300px;
@@ -221,7 +220,12 @@ $width-aside: 300px;
         align-items: center;
         font-weight: bold;
         padding: 0.5rem 1rem;
+
+        a {
+          color: var(--bs-body-color);
+        }
       }
+
       & > ul {
         display: none;
 
@@ -258,7 +262,7 @@ $width-aside: 300px;
 }
 
 @mixin devBanner {
-  background-color: $main-color;
+  background-color: var(--cp-main-color);
   color: #fff;
   font-size: .8rem;
   text-align: center;
@@ -279,9 +283,9 @@ $width-aside: 300px;
   .nav {
     @include nav;
 
-    [value="Content"]:checked ~ .accordion [for="Content"],
-    [value="Media"]:checked ~ .accordion [for="Media"],
-    [value="Administrator"]:checked ~ .accordion [for="Administrator"] {
+    [value="content"]:checked ~ .accordion [for="content"],
+    [value="media"]:checked ~ .accordion [for="media"],
+    [value="administrator"]:checked ~ .accordion [for="administrator"] {
       & > svg {
         transform: rotate(-90deg);
       }

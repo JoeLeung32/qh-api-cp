@@ -1,6 +1,5 @@
 @import "bootstrap";
-
-@import "values";
+@import "root";
 
 // Components
 @import "component-hyper-responsive-table";
@@ -13,11 +12,11 @@
 // global
 body {
   &[data-auth] {
-    background-color: $main-color;
+    background-color: var(--cp-main-color);
   }
 }
 
 a {
-  color: $main-color;
+  color: var(--cp-main-color);
   text-decoration: none;
 }

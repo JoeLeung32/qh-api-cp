@@ -27,7 +27,8 @@ export class Helper {
 			isAuth: false,
 			locateUrl: this.#locateUrl,
 			lng: this.#req.params?.lng,
-			env: process.env.NODE_ENV
+			env: process.env.NODE_ENV,
+			pathCategory: this.#req.path.replace(/^\/|\/$/g, '').split('/')[1]
 		}
 		if (authToken && authToken.length) {
 			props.isAuth = true
