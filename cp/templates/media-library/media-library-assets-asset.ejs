@@ -1,0 +1,39 @@
+<div class="col-6 col-sm-4 col-lg-3 d-flex">
+    <div class="card position-relative" style="width: 18rem;">
+        <div style="background-image:url('/public/images/png/transparent_background.png');background-size:1rem;padding-top:100%;" class="position-relative">
+            <% if (thumbnail) { %>
+                <div style="background-image:url('<%= thumbnail %>');background-size:contain;background-repeat:no-repeat;background-position:center;" class="d-block w-100 h-100 position-absolute top-0"></div>
+            <% } else { %>
+                <div style="background-image:url('/public/images/svg/logo.svg');background-size:contain;background-repeat:no-repeat;background-position:center;background-size:50%;opacity:.5;" class="d-block w-100 h-100 position-absolute top-0"></div>
+            <% } %>
+        </div>
+        <div class="p-2">
+            <div class="d-flex justify-content-between align-items-start gap-1">
+                <div class="d-flex flex-column">
+                    <span class="fw-bold">
+                        <%= filename %>
+                    </span>
+                    <small class="text-muted">
+                        <%= ext %>
+                        <%= (width && height) ? `- ${width} x ${height}` : '' %>
+                    </small>
+                </div>
+                <div>
+                    <span class="badge bg-info text-uppercase">
+                        <%= type %>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="position-absolute d-flex flex-wrap justify-content-between align-items-center w-100">
+            <label class="eleSelect mediaElement">
+                <input type="checkbox" name="assets[]" value="###">
+                <i class="fa-solid fa-square "></i>
+                <i class="fa-solid fa-square-check"></i>
+            </label>
+            <div style="padding:10px;">
+                <i class="fa-solid fa-pen"></i>
+            </div>
+        </div>
+    </div>
+</div>

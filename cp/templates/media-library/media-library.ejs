@@ -1,3 +1,4 @@
+<%- include('./media-library-header') %>
 <%- include('./media-library-tools') %>
 <%- include('./media-library-folders') %>
 <hr class="my-4">
@@ -8,9 +9,6 @@
 	(() => {
 		eventListener.onload.add(() => {
 			core.bind.selectAll()
-
-			const html = `${pluralize('<%= t('media:folders') %>', <%= folderAmount %>, true)} - ${pluralize('<%= t('media:assets') %>', <%= assetAmount %>, true)}`
-			document.querySelector('.library-summary').innerHTML = html
 		}, 1)
 	})()
 </script>

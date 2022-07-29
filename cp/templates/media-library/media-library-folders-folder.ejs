@@ -1,0 +1,21 @@
+<div class="col-6 col-sm-4 col-lg-3">
+    <div class="bg-light rounded-1 d-flex align-items-center py-2">
+        <label class="eleSelect mediaElement bg-light">
+            <input type="checkbox" name="folder[]" value="###">
+            <i class="fa-solid fa-square "></i>
+            <i class="fa-solid fa-square-check"></i>
+        </label>
+        <div class="d-flex flex-wrap justify-content-center align-items-center">
+            <i class="fa-solid fa-folder fa-2xl"></i>
+        </div>
+        <div class="mx-2 d-flex flex-column align-items-start overflow-hidden">
+            <span class="text-truncate mw-100">
+                <%= folderName %>
+            </span>
+            <small class="text-truncate mw-100">
+                <%= folders %> <%= wordings.folders(folders) %>,
+                <%= assets %> <%= wordings.assets(assets) %>
+            </small>
+        </div>
+    </div>
+</div>

@@ -1,85 +1,30 @@
 <div>
-    <h2>Folders</h2>
+    <h2><%= t('media:folders') %></h2>
     <div class="row g-3">
-        <div class="col-6 col-sm-4 col-lg-3">
-            <div class="bg-light rounded-1 d-flex align-items-center py-2">
-                <label class="eleSelect mediaElement bg-light">
-                    <input type="checkbox">
-                    <i class="fa-solid fa-square "></i>
-                    <i class="fa-solid fa-square-check"></i>
-                </label>
-                <div class="d-flex flex-wrap justify-content-center align-items-center">
-                    <i class="fa-solid fa-folder fa-2xl"></i>
-                </div>
-                <div class="ms-2 d-flex flex-column align-items-start overflow-hidden">
-                    <span class="text-truncate mw-100">Folder Name</span>
-                    <small class="text-truncate mw-100"># folder, # asset</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-4 col-lg-3">
-            <div class="bg-light rounded-1 d-flex align-items-center py-2">
-                <label class="eleSelect mediaElement bg-light">
-                    <input type="checkbox">
-                    <i class="fa-solid fa-square "></i>
-                    <i class="fa-solid fa-square-check"></i>
-                </label>
-                <div class="d-flex flex-wrap justify-content-center align-items-center">
-                    <i class="fa-solid fa-folder fa-2xl"></i>
-                </div>
-                <div class="ms-2 d-flex flex-column align-items-start overflow-hidden">
-                    <span class="text-truncate mw-100">Folder Name</span>
-                    <small class="text-truncate mw-100"># folder, # asset</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-4 col-lg-3">
-            <div class="bg-light rounded-1 d-flex align-items-center py-2">
-                <label class="eleSelect mediaElement bg-light">
-                    <input type="checkbox">
-                    <i class="fa-solid fa-square "></i>
-                    <i class="fa-solid fa-square-check"></i>
-                </label>
-                <div class="d-flex flex-wrap justify-content-center align-items-center">
-                    <i class="fa-solid fa-folder fa-2xl"></i>
-                </div>
-                <div class="ms-2 d-flex flex-column align-items-start overflow-hidden">
-                    <span class="text-truncate mw-100">Folder Name</span>
-                    <small class="text-truncate mw-100"># folder, # asset</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-4 col-lg-3">
-            <div class="bg-light rounded-1 d-flex align-items-center py-2">
-                <label class="eleSelect mediaElement bg-light">
-                    <input type="checkbox">
-                    <i class="fa-solid fa-square "></i>
-                    <i class="fa-solid fa-square-check"></i>
-                </label>
-                <div class="d-flex flex-wrap justify-content-center align-items-center">
-                    <i class="fa-solid fa-folder fa-2xl"></i>
-                </div>
-                <div class="ms-2 d-flex flex-column align-items-start overflow-hidden">
-                    <span class="text-truncate mw-100">Folder Name</span>
-                    <small class="text-truncate mw-100"># folder, # asset</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-6 col-sm-4 col-lg-3">
-            <div class="bg-light rounded-1 d-flex align-items-center py-2">
-                <label class="eleSelect mediaElement bg-light">
-                    <input type="checkbox">
-                    <i class="fa-solid fa-square "></i>
-                    <i class="fa-solid fa-square-check"></i>
-                </label>
-                <div class="d-flex flex-wrap justify-content-center align-items-center">
-                    <i class="fa-solid fa-folder fa-2xl"></i>
-                </div>
-                <div class="ms-2 d-flex flex-column align-items-start overflow-hidden">
-                    <span class="text-truncate mw-100">Folder Name</span>
-                    <small class="text-truncate mw-100"># folder, # asset</small>
-                </div>
-            </div>
-        </div>
+        <%- include('./media-library-folders-folder', {
+            folderName: 'Folder Name A',
+            folders: 0,
+            assets: 0,
+        }) %>
+        <%- include('./media-library-folders-folder', {
+            folderName: 'Folder Name B',
+            folders: 0,
+            assets: 0,
+        }) %>
+        <%- include('./media-library-folders-folder', {
+            folderName: 'Folder Name C',
+            folders: 0,
+            assets: 0,
+        }) %>
+        <%- include('./media-library-folders-folder', {
+            folderName: 'Folder Name D',
+            folders: 0,
+            assets: 0,
+        }) %>
+        <%- include('./media-library-folders-folder', {
+            folderName: 'Folder Name E',
+            folders: 0,
+            assets: 0,
+        }) %>
     </div>
 </div>

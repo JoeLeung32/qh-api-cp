@@ -1,27 +1,3 @@
-<div>
-    <div class="d-flex flex-wrap justify-content-between align-items-end">
-        <div class="d-flex flex-wrap gap-2 py-1">
-            <div>
-                <h1><%= t('dashboard:Media Library') %></h1>
-                <div class="library-summary"></div>
-            </div>
-        </div>
-        <div class="d-flex gap-2 py-1 justify-content-lg-end">
-            <div>
-                <div id="btnAddFolder" class="btn btn-light" onclick="btnAddFolderOnClick()">
-                    <i class="fa-solid fa-folder-plus"></i>
-                    <span class="ms-1">Add Folder</span>
-                </div>
-            </div>
-            <div>
-                <div id="btnAddAssets" class="btn btn-light" onclick="btnAddAssetsOnClick()">
-                    <i class="fa-solid fa-file-circle-plus"></i>
-                    <span class="ms-1">Add Assets</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="my-2">
     <div class="d-flex flex-wrap justify-content-between align-items-center">
         <div class="d-flex flex-wrap gap-2 py-1">
@@ -132,77 +108,7 @@
         </div>
     </div>
 </div>
-
 <script>
-	function initAddNewFolderDialog() {
-		return new Dialog('addNewFolder', {
-			parent: 'body',
-			buttons: [
-				{
-					text: 'Cancel',
-					className: 'btn btn-light',
-					onClick: function (evt, obj, store) {
-						// store.value = ''
-					},
-					close: true
-				},
-				{
-					text: 'Confirm',
-					className: 'btn btn-primary',
-					onClick: function (evt, obj, store) {
-						// console.log(store.value)
-					}
-				}
-			],
-			canBeCloseByOverlay: true,
-			overlayOnClick: function (evt, obj, store) {
-				// ...
-			}
-		});
-	}
-
-	function initAddNewAssetsDialog() {
-		return new Dialog('addNewAssets', {
-			parent: 'body',
-			buttons: [
-				{
-					text: 'Cancel',
-					className: 'btn btn-light',
-					onClick: function (evt, obj, store) {
-						console.log('~> Cancel')
-					},
-					close: true
-				},
-				{
-					text: 'Confirm',
-					className: 'btn btn-primary',
-					onClick: function (evt, obj, store) {
-						console.log('~> Confirm')
-					}
-				}
-			],
-			canBeCloseByOverlay: true,
-			overlayOnClick: function (evt, obj, store) {
-				// ...
-			}
-		});
-	}
-
-	const dialogAddNewFolder = initAddNewFolderDialog()
-	const dialogAddNewAssets = initAddNewAssetsDialog()
-	let dropzone;
-
-	function btnAddFolderOnClick() {
-		dialogAddNewFolder.show()
-    }
-
-	function btnAddAssetsOnClick() {
-		dialogAddNewAssets.show()
-        if (dropzone) {
-			dropzone.removeAllFiles();
-        }
-    }
-
 	(() => {
 		eventListener.onload.add(() => {
 			function initDateTimePicker() {
@@ -258,75 +164,6 @@
 			initDateTimePicker()
 			initBtnSearch()
 			initBtnFilter()
-
-			dialogAddNewFolder.init()
-				.content(`
-<div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
-    <div class="flex-grow-1">
-        <input name="folderName" type="text" class="form-control">
-    </div>
-    <div>
-        <select class="form-select">
-            <option selected>createAt</option>
-            <option value="1">updateAt</option>
-            <option value="2">type</option>
-        </select>
-    </div>
-</div>
-`, 'Add New Folder')
-			dialogAddNewAssets.init()
-				.content(`
-<form class="dropzone">
-  <div class="fallback">
-    <input name="multiple" type="file" multiple>
-  </div>
-</form>`, 'Add New Assets')
-				.callback(function () {
-					dropzone = new Dropzone('.dropzone',
-						{
-							paramName: function() {
-								return "multiple"
-							},
-							url: '/api/admin/upload-multiple',
-							uploadMultiple: true,
-							maxFilesize: 16,
-							maxFiles: 25,
-							clickable: true,
-							init : function() {
-								this.on('addedfile', function(file) {
-									console.log("addedfile", file)
-								})
-								this.on('thumbnail', function(file) {
-									console.log("thumbnail", file)
-									const thumbs = document.querySelectorAll('.dz-image');
-									[].forEach.call(thumbs, function (thumb) {
-										const img = thumb.querySelector('img');
-										if (img) {
-											img.setAttribute('width', '100%');
-											img.setAttribute('height', '100%');
-										}
-									});
-								})
-								this.on("success", function() {
-									console.log("success")
-								})
-								this.on("successmultiple", function() {
-									console.log("successmultiple")
-								})
-								this.on("sendingmultiple", function() {
-									console.log("sendingmultiple")
-								})
-								this.on("errormultiple", function(files, response) {
-									console.log("errormultiple")
-									console.log(response)
-									console.log(files)
-								})
-							}
-						})
-					dropzone.on('complete', function(file) {
-						console.log("complete", file)
-					})
-				})
 		}, 1)
 	})()
 </script>
