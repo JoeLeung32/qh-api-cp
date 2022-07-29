@@ -41,9 +41,15 @@ const AdminPanel = () => {
 	router.use(express.json())
 
 	// Static files
-	router.use('/public/bootstrap/js', _staticPath("node_modules/bootstrap/dist/js"))
+	router.use('/public/js/popper', _staticPath("node_modules/@popperjs/core/dist/umd"))
+	router.use('/public/js/bootstrap', _staticPath("node_modules/bootstrap/dist/js"))
 	router.use('/public/js/rxjs', _staticPath("node_modules/rxjs/dist/bundles"))
-	router.use('/public/js/fontawesome', _staticPath("node_modules/@fortawesome/fontawesome-free/js"))
+	router.use('/public/js/fontawesome.js', _staticPath("node_modules/@fortawesome/fontawesome-free/js/all.min.js"))
+	router.use('/public/js/pluralize.js', _staticPath("node_modules/pluralize/pluralize.js"))
+	router.use('/public/js/moment.js', _staticPath("node_modules/moment/min/moment-with-locales.js"))
+	router.use('/public/js/moment-timezone.js', _staticPath("node_modules/moment-timezone/builds/moment-timezone.min.js"))
+	router.use('/public/css/datetimepicker.css', _staticPath("node_modules/@eonasdan/tempus-dominus/dist/css/tempus-dominus.min.css"))
+	router.use('/public/js/datetimepicker.js', _staticPath("node_modules/@eonasdan/tempus-dominus/dist/js/tempus-dominus.min.js"))
 	router.use('/public', express.static('./cp/public'))
 
 	// Pages

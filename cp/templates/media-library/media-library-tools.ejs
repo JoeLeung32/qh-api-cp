@@ -1,5 +1,5 @@
 <div class="my-3 row">
-    <div class="col-12 col-md-6 py-1 d-flex flex-wrap gap-2 order-1 order-md-0">
+    <div class="col-12 col-lg-6 order-1 order-lg-0 py-1 d-flex flex-wrap gap-2">
         <div>
             <label class="eleSelect btn btn-light" data-select=".mediaElement">
                 <input type="checkbox">
@@ -47,72 +47,135 @@
             </div>
         </div>
         <div>
-            <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                    <i class="fa-solid fa-filter"></i>
-                    <span class="ms-1">Filters</span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li class="px-2 pb-2">
-                        <select class="form-select">
-                            <option selected>createAt</option>
-                            <option value="1">updateAt</option>
-                            <option value="2">type</option>
-                        </select>
-                    </li>
-                    <li class="px-2 pb-2">
-                        <select class="form-select">
-                            <option selected>is</option>
-                            <option value="1">is not</option>
-                            <option value="2">is greater than</option>
-                            <option value="2">is greater than or equal to</option>
-                            <option value="2">is lower than</option>
-                            <option value="2">is lower than or equal to</option>
-                        </select>
-                    </li>
-                    <li class="px-2 pb-2 row">
-                        <div class="col">
-                            Date
-                        </div>
-                        <div class="col">
-                            Time
-                        </div>
-                    </li>
-                    <li class="px-2 pb-2">
-                        <select class="form-select">
-                            <option value="1">audio</option>
-                            <option value="2">file</option>
-                            <option value="2">image</option>
-                            <option value="2">video</option>
-                        </select>
-                    </li>
-                    <li class="px-2 d-grid">
-                        <button class="btn">
-                            <i class="fa-solid fa-plus"></i>
-                            Add Filter
-                        </button>
-                    </li>
-                </ul>
+            <div id="btnFilter" class="btn btn-light" data-target="#media-filter">
+                <i class="fa-solid fa-filter"></i>
+                <span class="ms-1">Filters</span>
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-6 py-1 d-flex flex-wrap gap-2 justify-content-md-end order-0 order-md-1">
+    <div class="col-12 col-lg-6 order-0 order-lg-1 py-1 d-flex flex-wrap gap-2 justify-content-lg-end">
         <div>
             <div class="btn btn-light">
                 <i class="fa-solid fa-folder-plus"></i>
-                <span class="ms-1">Add New Folder</span>
+                <span class="ms-1">Add Folder</span>
             </div>
         </div>
         <div>
             <div class="btn btn-light">
                 <i class="fa-solid fa-file-circle-plus"></i>
-                <span class="ms-1">Add New Assets</span>
+                <span class="ms-1">Add Assets</span>
             </div>
         </div>
         <div>
-            <div class="btn btn-light">
+            <div id="btnSearch" class="btn btn-light align-items-center gap-2">
                 <i class="fa-solid fa-magnifying-glass"></i>
+                <input style="min-height: calc(1.5em + 0.18rem);padding: 0rem 0.5rem;" type="text"
+                       class="d-none form-control form-control-sm" name="keyword">
+            </div>
+        </div>
+    </div>
+    <div class="col-12 order-2">
+        <div id="media-filter" class="d-none flex-wrap align-items-center gap-2 pt-2">
+            <div>
+                <select class="form-select">
+                    <option selected>createAt</option>
+                    <option value="1">updateAt</option>
+                    <option value="2">type</option>
+                </select>
+            </div>
+            <div>
+                <select class="form-select">
+                    <option selected>is</option>
+                    <option value="1">is not</option>
+                    <option value="2">is greater than</option>
+                    <option value="2">is greater than or equal to</option>
+                    <option value="2">is lower than</option>
+                    <option value="2">is lower than or equal to</option>
+                </select>
+            </div>
+            <div>
+                <div class="input-group" id="singlePicker" data-td-target-input="nearest"
+                     data-td-target-toggle="nearest">
+                    <input id="singlePickerInput" type="text" class="form-control" data-td-target="#singlePicker">
+                    <span class="input-group-text" data-td-target="#singlePicker" data-td-toggle="datetimepicker">
+                        <span class="fa-solid fa-calendar"></span>
+                    </span>
+                </div>
+            </div>
+            <div>
+                <select class="form-select">
+                    <option value="1">audio</option>
+                    <option value="2">file</option>
+                    <option value="2">image</option>
+                    <option value="2">video</option>
+                </select>
+            </div>
+            <div>
+                <button class="btn btn-primary">
+                    <i class="fa-solid fa-plus"></i>
+                    Add Filter
+                </button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+	(() => {
+		eventListener.onload.add(() => {
+			function initDateTimePicker() {
+				new tempusDominus.TempusDominus(document.getElementById('singlePicker'), {
+					display: {
+						components: {
+							useTwentyfourHour: true,
+						}
+					}, localization: {
+						locale: 'en',
+					},
+				}).dates.formatInput = function (t) {
+					return moment(t).format('YYYY-MM-DD HH:mm:ss')
+				}
+			}
+
+			function initBtnSearch() {
+				const btnSearch = document.getElementById('btnSearch')
+				const inputBox = btnSearch.querySelector('input')
+
+				function btnSearchHandler(evt) {
+					const obj = evt.currentTarget
+					if (inputBox.value) {
+						inputBox.value = inputBox.value.trim()
+					} else {
+						obj.classList.toggle('d-flex')
+						inputBox.classList.toggle('d-none')
+						inputBox.classList.toggle('d-block')
+						inputBox.focus()
+					}
+				}
+
+				btnSearch.addEventListener('focusout', btnSearchHandler)
+				btnSearch.addEventListener('click', btnSearchHandler)
+				inputBox.addEventListener('keydown', function (evt) {
+					if (evt.key.toLowerCase() === 'enter') {
+						alert(inputBox.value)
+					}
+				})
+			}
+
+			function initBtnFilter() {
+                const btnFilter = document.getElementById('btnFilter')
+                const targetDiv = btnFilter.dataset.target
+                const blockMediaFilter = document.querySelector(targetDiv)
+
+				btnFilter.addEventListener('click', function(evt) {
+					blockMediaFilter.classList.toggle('d-none')
+					blockMediaFilter.classList.toggle('d-flex')
+                })
+            }
+
+			initDateTimePicker()
+			initBtnSearch()
+			initBtnFilter()
+		}, 1)
+	})()
+</script>

@@ -7,6 +7,8 @@ class MediaLibrary extends Helper {
 		this.pageRender('html/html', {
 			title: req.t('dashboard:Media Library'),
 			page: 'media-library/media-library',
+			folders: 0,
+			assets: 0,
 		})
 	}
 }

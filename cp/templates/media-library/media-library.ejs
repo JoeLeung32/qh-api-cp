@@ -1,15 +1,18 @@
 <h1><%= t('dashboard:Media Library') %></h1>
-<div>
-    # folder - # asset
-</div>
+<div class="library-summary"></div>
 <%- include('./media-library-tools') %>
 <%- include('./media-library-folders') %>
 <hr class="my-4">
 <%- include('./media-library-assets') %>
 <script>
+	<% const folderAmount = folders %>
+	<% const assetAmount = assets %>
 	(() => {
 		eventListener.onload.add(() => {
 			core.bind.selectAll()
+
+			const html = `${pluralize('<%= t('media:folders') %>', <%= folderAmount %>, true)} - ${pluralize('<%= t('media:assets') %>', <%= assetAmount %>, true)}`
+			document.querySelector('.library-summary').innerHTML = html
 		}, 1)
 	})()
 </script>
