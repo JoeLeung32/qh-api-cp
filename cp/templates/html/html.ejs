@@ -6,14 +6,14 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="icon" type="image/x-icon" href="/public/images/favicon.ico">
+    <link rel="stylesheet" href="/public/css/datetimepicker.css">
+    <link rel="stylesheet" href="/public/dropzone/dropzone.css">
     <link rel="stylesheet" href="/public/css/style.css">
     <script src="/public/js/popper/popper.min.js"></script>
     <script src="/public/js/bootstrap/bootstrap.min.js"></script>
     <script src="/public/js/rxjs/rxjs.umd.js"></script>
     <script src="/public/js/moment.js"></script>
     <script src="/public/js/moment-timezone.js"></script>
-    <link rel="stylesheet" href="/public/css/datetimepicker.css">
-    <script src="/public/js/datetimepicker.js"></script>
     <script src="/public/js/app.js"></script>
 </head>
 <body<%= isAuth ? ' data-auth' : ''%>>
@@ -49,6 +49,8 @@
         </div>
     <% } %>
 </div>
+<script src="/public/dropzone/dropzone-min.js"></script>
+<script src="/public/js/datetimepicker.js"></script>
 <script src="/public/js/fontawesome.js"></script>
 <script src="/public/js/pluralize.js"></script>
 </body>

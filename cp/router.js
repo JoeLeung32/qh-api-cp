@@ -44,6 +44,7 @@ const AdminPanel = () => {
 	router.use('/public/js/popper', _staticPath("node_modules/@popperjs/core/dist/umd"))
 	router.use('/public/js/bootstrap', _staticPath("node_modules/bootstrap/dist/js"))
 	router.use('/public/js/rxjs', _staticPath("node_modules/rxjs/dist/bundles"))
+	router.use('/public/dropzone', _staticPath("node_modules/dropzone/dist"))
 	router.use('/public/js/fontawesome.js', _staticPath("node_modules/@fortawesome/fontawesome-free/js/all.min.js"))
 	router.use('/public/js/pluralize.js', _staticPath("node_modules/pluralize/pluralize.js"))
 	router.use('/public/js/moment.js', _staticPath("node_modules/moment/min/moment-with-locales.js"))

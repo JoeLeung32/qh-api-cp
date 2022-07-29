@@ -1,126 +1,208 @@
-<div class="my-3 row">
-    <div class="col-12 col-lg-6 order-1 order-lg-0 py-1 d-flex flex-wrap gap-2">
-        <div>
-            <label class="eleSelect btn btn-light" data-select=".mediaElement">
-                <input type="checkbox">
-                <i class="fa-solid fa-square "></i>
-                <i class="fa-solid fa-square-check"></i>
-            </label>
-        </div>
-        <div>
-            <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                    Sort by
-                </button>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            Most recent uploads
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            Oldest uploads
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            Alphabetical order (A to Z)
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            Reverse alphabetical order (Z to A)
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            Most recent update
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            Oldest update
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div>
-            <div id="btnFilter" class="btn btn-light" data-target="#media-filter">
-                <i class="fa-solid fa-filter"></i>
-                <span class="ms-1">Filters</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-lg-6 order-0 order-lg-1 py-1 d-flex flex-wrap gap-2 justify-content-lg-end">
-        <div>
-            <div class="btn btn-light">
-                <i class="fa-solid fa-folder-plus"></i>
-                <span class="ms-1">Add Folder</span>
-            </div>
-        </div>
-        <div>
-            <div class="btn btn-light">
-                <i class="fa-solid fa-file-circle-plus"></i>
-                <span class="ms-1">Add Assets</span>
-            </div>
-        </div>
-        <div>
-            <div id="btnSearch" class="btn btn-light align-items-center gap-2">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input style="min-height: calc(1.5em + 0.18rem);padding: 0rem 0.5rem;" type="text"
-                       class="d-none form-control form-control-sm" name="keyword">
-            </div>
-        </div>
-    </div>
-    <div class="col-12 order-2">
-        <div id="media-filter" class="d-none flex-wrap align-items-center gap-2 pt-2">
+<div>
+    <div class="d-flex flex-wrap justify-content-between align-items-end">
+        <div class="d-flex flex-wrap gap-2 py-1">
             <div>
-                <select class="form-select">
-                    <option selected>createAt</option>
-                    <option value="1">updateAt</option>
-                    <option value="2">type</option>
-                </select>
+                <h1><%= t('dashboard:Media Library') %></h1>
+                <div class="library-summary"></div>
             </div>
+        </div>
+        <div class="d-flex gap-2 py-1 justify-content-lg-end">
             <div>
-                <select class="form-select">
-                    <option selected>is</option>
-                    <option value="1">is not</option>
-                    <option value="2">is greater than</option>
-                    <option value="2">is greater than or equal to</option>
-                    <option value="2">is lower than</option>
-                    <option value="2">is lower than or equal to</option>
-                </select>
-            </div>
-            <div>
-                <div class="input-group" id="singlePicker" data-td-target-input="nearest"
-                     data-td-target-toggle="nearest">
-                    <input id="singlePickerInput" type="text" class="form-control" data-td-target="#singlePicker">
-                    <span class="input-group-text" data-td-target="#singlePicker" data-td-toggle="datetimepicker">
-                        <span class="fa-solid fa-calendar"></span>
-                    </span>
+                <div id="btnAddFolder" class="btn btn-light" onclick="btnAddFolderOnClick()">
+                    <i class="fa-solid fa-folder-plus"></i>
+                    <span class="ms-1">Add Folder</span>
                 </div>
             </div>
             <div>
-                <select class="form-select">
-                    <option value="1">audio</option>
-                    <option value="2">file</option>
-                    <option value="2">image</option>
-                    <option value="2">video</option>
-                </select>
+                <div id="btnAddAssets" class="btn btn-light" onclick="btnAddAssetsOnClick()">
+                    <i class="fa-solid fa-file-circle-plus"></i>
+                    <span class="ms-1">Add Assets</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="my-2">
+    <div class="d-flex flex-wrap justify-content-between align-items-center">
+        <div class="d-flex flex-wrap gap-2 py-1">
+            <div>
+                <label class="eleSelect btn btn-light" data-select=".mediaElement">
+                    <input type="checkbox">
+                    <i class="fa-solid fa-square "></i>
+                    <i class="fa-solid fa-square-check"></i>
+                </label>
             </div>
             <div>
-                <button class="btn btn-primary">
-                    <i class="fa-solid fa-plus"></i>
-                    Add Filter
-                </button>
+                <div class="dropdown">
+                    <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <i class="fa-solid fa-arrow-down-a-z"></i>
+                        <span class="ms-1 d-none d-md-inline-block">Sort by</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Most recent uploads
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Oldest uploads
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Alphabetical order (A to Z)
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Reverse alphabetical order (Z to A)
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Most recent update
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                Oldest update
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
+            <div>
+                <div id="btnFilter" class="btn btn-light" data-target="#media-filter">
+                    <i class="fa-solid fa-filter"></i>
+                    <span class="ms-1 d-none d-md-inline-block">Filters</span>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex gap-2 py-1 justify-content-lg-end">
+            <div>
+                <div id="btnSearch" class="btn btn-light align-items-center gap-2">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input style="min-height: calc(1.5em + 0.18rem);padding: 0rem 0.5rem;" type="text"
+                           class="d-none form-control form-control-sm" name="keyword">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="media-filter" class="d-none flex-wrap align-items-center gap-2 mt-2">
+        <div>
+            <select class="form-select">
+                <option selected>createAt</option>
+                <option value="1">updateAt</option>
+                <option value="2">type</option>
+            </select>
+        </div>
+        <div>
+            <select class="form-select">
+                <option selected>is</option>
+                <option value="1">is not</option>
+                <option value="2">is greater than</option>
+                <option value="2">is greater than or equal to</option>
+                <option value="2">is lower than</option>
+                <option value="2">is lower than or equal to</option>
+            </select>
+        </div>
+        <div>
+            <div class="input-group" id="singlePicker" data-td-target-input="nearest"
+                 data-td-target-toggle="nearest">
+                <input id="singlePickerInput" type="text" class="form-control" data-td-target="#singlePicker">
+                <span class="input-group-text" data-td-target="#singlePicker" data-td-toggle="datetimepicker">
+                    <span class="fa-solid fa-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div>
+            <select class="form-select">
+                <option value="1">audio</option>
+                <option value="2">file</option>
+                <option value="2">image</option>
+                <option value="2">video</option>
+            </select>
+        </div>
+        <div>
+            <button class="btn btn-primary">
+                <i class="fa-solid fa-plus"></i>
+                Add Filter
+            </button>
         </div>
     </div>
 </div>
 
 <script>
+	function initAddNewFolderDialog() {
+		return new Dialog('addNewFolder', {
+			parent: 'body',
+			buttons: [
+				{
+					text: 'Cancel',
+					className: 'btn btn-light',
+					onClick: function (evt, obj, store) {
+						// store.value = ''
+					},
+					close: true
+				},
+				{
+					text: 'Confirm',
+					className: 'btn btn-primary',
+					onClick: function (evt, obj, store) {
+						// console.log(store.value)
+					}
+				}
+			],
+			canBeCloseByOverlay: true,
+			overlayOnClick: function (evt, obj, store) {
+				// ...
+			}
+		});
+	}
+
+	function initAddNewAssetsDialog() {
+		return new Dialog('addNewAssets', {
+			parent: 'body',
+			buttons: [
+				{
+					text: 'Cancel',
+					className: 'btn btn-light',
+					onClick: function (evt, obj, store) {
+						console.log('~> Cancel')
+					},
+					close: true
+				},
+				{
+					text: 'Confirm',
+					className: 'btn btn-primary',
+					onClick: function (evt, obj, store) {
+						console.log('~> Confirm')
+					}
+				}
+			],
+			canBeCloseByOverlay: true,
+			overlayOnClick: function (evt, obj, store) {
+				// ...
+			}
+		});
+	}
+
+	const dialogAddNewFolder = initAddNewFolderDialog()
+	const dialogAddNewAssets = initAddNewAssetsDialog()
+	let dropzone;
+
+	function btnAddFolderOnClick() {
+		dialogAddNewFolder.show()
+    }
+
+	function btnAddAssetsOnClick() {
+		dialogAddNewAssets.show()
+        if (dropzone) {
+			dropzone.removeAllFiles();
+        }
+    }
+
 	(() => {
 		eventListener.onload.add(() => {
 			function initDateTimePicker() {
@@ -163,19 +245,88 @@
 			}
 
 			function initBtnFilter() {
-                const btnFilter = document.getElementById('btnFilter')
-                const targetDiv = btnFilter.dataset.target
-                const blockMediaFilter = document.querySelector(targetDiv)
+				const btnFilter = document.getElementById('btnFilter')
+				const targetDiv = btnFilter.dataset.target
+				const blockMediaFilter = document.querySelector(targetDiv)
 
-				btnFilter.addEventListener('click', function(evt) {
+				btnFilter.addEventListener('click', function (evt) {
 					blockMediaFilter.classList.toggle('d-none')
 					blockMediaFilter.classList.toggle('d-flex')
-                })
-            }
+				})
+			}
 
 			initDateTimePicker()
 			initBtnSearch()
 			initBtnFilter()
+
+			dialogAddNewFolder.init()
+				.content(`
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+    <div class="flex-grow-1">
+        <input name="folderName" type="text" class="form-control">
+    </div>
+    <div>
+        <select class="form-select">
+            <option selected>createAt</option>
+            <option value="1">updateAt</option>
+            <option value="2">type</option>
+        </select>
+    </div>
+</div>
+`, 'Add New Folder')
+			dialogAddNewAssets.init()
+				.content(`
+<form class="dropzone">
+  <div class="fallback">
+    <input name="multiple" type="file" multiple>
+  </div>
+</form>`, 'Add New Assets')
+				.callback(function () {
+					dropzone = new Dropzone('.dropzone',
+						{
+							paramName: function() {
+								return "multiple"
+							},
+							url: '/api/admin/upload-multiple',
+							uploadMultiple: true,
+							maxFilesize: 16,
+							maxFiles: 25,
+							clickable: true,
+							init : function() {
+								this.on('addedfile', function(file) {
+									console.log("addedfile", file)
+								})
+								this.on('thumbnail', function(file) {
+									console.log("thumbnail", file)
+									const thumbs = document.querySelectorAll('.dz-image');
+									[].forEach.call(thumbs, function (thumb) {
+										const img = thumb.querySelector('img');
+										if (img) {
+											img.setAttribute('width', '100%');
+											img.setAttribute('height', '100%');
+										}
+									});
+								})
+								this.on("success", function() {
+									console.log("success")
+								})
+								this.on("successmultiple", function() {
+									console.log("successmultiple")
+								})
+								this.on("sendingmultiple", function() {
+									console.log("sendingmultiple")
+								})
+								this.on("errormultiple", function(files, response) {
+									console.log("errormultiple")
+									console.log(response)
+									console.log(files)
+								})
+							}
+						})
+					dropzone.on('complete', function(file) {
+						console.log("complete", file)
+					})
+				})
 		}, 1)
 	})()
 </script>
