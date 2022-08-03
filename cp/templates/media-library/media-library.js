@@ -1,6 +1,7 @@
 import {CPAuthContainer} from "#cp/controller/container.js";
 import {Helper} from "#cp/controller/helper.js";
 import pluralize from "pluralize";
+import {authorization} from "#cp/controller/axios.js";
 
 class MediaLibrary extends Helper {
 	constructor(req, res, next) {
@@ -8,6 +9,7 @@ class MediaLibrary extends Helper {
 		this.pageRender('html/html', {
 			title: req.t('dashboard:Media Library'),
 			page: 'media-library/media-library',
+			authorization,
 			folders: 0,
 			assets: 0,
 			wordings: {

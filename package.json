@@ -55,6 +55,7 @@
     "pluralize": "https://github.com/plurals/pluralize.git",
     "prettier": "^2.7.1",
     "rxjs": "^7.5.6",
+    "sharp": "^0.30.7",
     "terser": "^5.14.2"
   },
   "engines": {

@@ -1,11 +1,14 @@
 import express from "express";
 import multer from "multer";
 import {appGenericCORS, helmetBasic} from "#src/app.js";
-import {Uploader} from "#admin/upload.js";
 import {PanelLogin} from "#admin/panel/login.js";
 import {PanelLogout} from "#admin/panel/logout.js";
 import {PanelGuard} from "#admin/panel/guard.js";
 import {PanelSetting} from "#admin/panel/settings.js";
+import {MediaAddNewAssets} from "#admin/media/assets-add.js";
+
+// Demo
+import {Uploader} from "#admin/demo/upload.js";
 
 const AdminApi = () => {
 	const router = express.Router();
@@ -37,6 +40,9 @@ const AdminApi = () => {
 	router.get('/panel/logout', PanelLogout);
 	router.get('/panel/guard', PanelGuard);
 	router.post('/panel/setting', upload.none(), PanelSetting);
+
+	// Media
+	router.post('/media/add-new-assets', upload.array('assets'), MediaAddNewAssets)
 
 	// Uploader Example
 	router.post('/upload', upload.single('single'), Uploader.single);

@@ -90,13 +90,14 @@
 
 	function btnAddAssetsOnClick() {
 		dialogAddNewAssets.show()
-        if (dropzone) {
+		if (dropzone) {
 			dropzone.removeAllFiles();
-        }
-    }
+		}
+	}
 
 	(() => {
 		eventListener.onload.add(() => {
+
 			dialogAddNewFolder.init()
 				.content(`
 <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
@@ -112,57 +113,61 @@
     </div>
 </div>
 `, 'Add New Folder')
+
+			const dropzoneOptions = {
+				paramName: function () {
+					return "assets"
+				},
+				url: '/api/admin/media/add-new-assets',
+				uploadMultiple: true,
+				maxFilesize: 16,
+				maxFiles: 25,
+				clickable: true,
+				dictDefaultMessage: 'Drop files here to upload :-p',
+				headers: {
+					'Authorization': 'Bearer <%= authorization.bearer %>'
+				},
+				init: function () {
+					this.on('addedfile', function (file) {
+						console.log("addedfile", file)
+					})
+					this.on('thumbnail', function (file) {
+						console.log("thumbnail", file)
+						const thumbs = document.querySelectorAll('.dz-image');
+						[].forEach.call(thumbs, function (thumb) {
+							const img = thumb.querySelector('img');
+							if (img) {
+								img.setAttribute('width', '100%');
+								img.setAttribute('height', '100%');
+							}
+						});
+					})
+					this.on('success', function () {
+						console.log('success')
+					})
+					this.on('successmultiple', function () {
+						console.log('successmultiple')
+					})
+					this.on('sendingmultiple', function () {
+						console.log('sendingmultiple')
+					})
+					this.on('errormultiple', function (files, response) {
+						console.log('errormultiple')
+						console.log(response)
+						console.log(files)
+					})
+				}
+			}
 			dialogAddNewAssets.init()
 				.content(`
 <form class="dropzone">
   <div class="fallback">
-    <input name="multiple" type="file" multiple>
+    <input name="assets" type="file" multiple>
   </div>
 </form>`, 'Add New Assets')
 				.callback(function () {
-					dropzone = new Dropzone('.dropzone',
-						{
-							paramName: function() {
-								return "multiple"
-							},
-							url: '/api/admin/upload-multiple',
-							uploadMultiple: true,
-							maxFilesize: 16,
-							maxFiles: 25,
-							clickable: true,
-							init : function() {
-								this.on('addedfile', function(file) {
-									console.log("addedfile", file)
-								})
-								this.on('thumbnail', function(file) {
-									console.log("thumbnail", file)
-									const thumbs = document.querySelectorAll('.dz-image');
-									[].forEach.call(thumbs, function (thumb) {
-										const img = thumb.querySelector('img');
-										if (img) {
-											img.setAttribute('width', '100%');
-											img.setAttribute('height', '100%');
-										}
-									});
-								})
-								this.on("success", function() {
-									console.log("success")
-								})
-								this.on("successmultiple", function() {
-									console.log("successmultiple")
-								})
-								this.on("sendingmultiple", function() {
-									console.log("sendingmultiple")
-								})
-								this.on("errormultiple", function(files, response) {
-									console.log("errormultiple")
-									console.log(response)
-									console.log(files)
-								})
-							},
-							dictDefaultMessage: 'Drop files here to upload :-p'
-						})
-					dropzone.on('complete', function(file) {
+					dropzone = new Dropzone('.dropzone', dropzoneOptions)
+					dropzone.on('complete', function (file) {
 						console.log("complete", file)
 					})
 				})
